@@ -4,7 +4,7 @@ var total = 0;
 $(document).ready(function() {
     
   listerTT();
-  
+  count_item();
   //<li><a href='#'>Circuit-1</a></li>
 
   $("body").on("click", "[id^=date]", function() {

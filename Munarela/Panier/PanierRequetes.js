@@ -27,7 +27,7 @@ function enregistrerPani(){
 	});
 }
 
-count_item();
+
    
  function count_item() {
      
