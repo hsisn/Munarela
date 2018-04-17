@@ -1,14 +1,20 @@
 <?php
+
 require_once("../includes/modele.inc.php");
 require_once("../includes/init.php");
+
+
 $tabRes = array();
+
 function login() {
     global $tabRes;
     $email = $_POST['email'];
     $password = md5($_POST['password']);
+
     try {
         $unModele = new circuitModel();
         $requete = "SELECT email, idUtilisateur, password FROM utilisateur WHERE email =? AND password =? ";
+
         $unModele = new circuitModel($requete, array($email, $password));
         $stmt = $unModele->executer();
         $count = $stmt->rowCount();
@@ -21,6 +27,7 @@ function login() {
             if (isset($_POST['remember'])) {
                 setcookie('email', $email, time() + 86400);
             }
+
             $_SESSION['email'] = $email;
            
             //redirect("index.php");
@@ -28,6 +35,7 @@ function login() {
         } else {
             $tabRes['msg'] = "username ou Mot de passe errone.";
         }
+
         $tabRes['action'] = "login";
     } catch (Exception $e) {
         
@@ -35,6 +43,7 @@ function login() {
         unset($unModele);
     }
 }
+
 function register() {
     global $tabRes;
     $tabRes['action'] = "register";
@@ -43,19 +52,32 @@ function register() {
     $display_name = $_POST['display_name'];
     $email = $_POST['email'];
     $password = md5($_POST['password']);
+    $active= 1;
     //$confirm_password= $_POST['confirm_password'];
+
+
+
+
     try {
         $unModele = new circuitModel();
-        $requete = "INSERT INTO utilisateur VALUES(0,?,?,?,?,?)";
-        $unModele = new circuitModel($requete, array($first_name, $last_name, $display_name, $email, $password));
-        $stmt = $unModele->executer();
+
+        $requete = "INSERT INTO utilisateur VALUES(0,?,?,?,?,?,?)";
+        $unModele = new circuitModel($requete, array($first_name, $last_name, $display_name, $email, $password,$active));
+        $stmt = $unModele->executer();       
+        
         $tabRes['action'] = "register";
         $tabRes['msg'] = "utilisateur bien enregistrer";
     } catch (Exception $e) {
+
         echo $e;
     } finally {
         unset($unModele);
     }
+
+
+
+
+
     ///$errors = [];
     /////////////
     /*            if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -65,6 +87,7 @@ function register() {
       $errors[] = "$email deja enregistrer.";
       $tabRes['msg']=$errors[];
       }
+
       if (!empty($errors)) {
       foreach ($errors as $error) {
       validation_errors($error);
@@ -75,6 +98,8 @@ function register() {
       $_SESSION["uid"] = mysqli_insert_id($connexion);
       if ($connexion->query($sql) === TRUE) {
       $tabRes['msg']="index";
+
+
       } else {
       $tabRes['msg']=set_message("<p>Error: " . $sql . "<br>" . $connexion->error . "</p>");
       }
@@ -84,15 +109,20 @@ function register() {
       }
      */       //////////////       //////////////
 }
+
 function logout() {
     global $tabRes;
     $tabRes['action'] = "logout";
+
     try {
         session_destroy();
+
         if (isset($_COOKIE['email'])) {
             unset($_COOKIE['email']);
+
             setcookie('email', '', time() - 86400);
         }
+
         $tabRes['msg'] = "deconnecter";
     } catch (Exception $e) {
         echo $e;
@@ -100,15 +130,19 @@ function logout() {
         //unset($unModele);
     }
 }
+
 //information user connecter
 function information() {
     global $tabRes;
     $tabRes['action'] = "infouser";
+
+
     if (isset($_SESSION["email"])) {
         $email = $_SESSION["email"];
     } else {
         $email = "";
     }
+
     $requete = "SELECT idUtilisateur,last_name,first_name,email FROM utilisateur where email=?";
     try {
         $unModele = new circuitModel($requete, array($email));
@@ -117,6 +151,7 @@ function information() {
         while ($ligne = $stmt->fetch(PDO::FETCH_OBJ)) {
             $tabRes['information'][] = $ligne;
             $_SESSION['idUtilisateur']=$ligne->idUtilisateur;
+           
         }
     } catch (Exception $e) {
         
@@ -124,6 +159,7 @@ function information() {
         unset($unModele);
     }
 }
+
 /* function enlever(){
   global $tabRes;
   $idf=$_POST['numE'];
@@ -148,6 +184,7 @@ function information() {
   unset($unModele);
   }
   }
+
   function fiche(){
   global $tabRes;
   $idf=$_POST['numF'];
@@ -169,6 +206,7 @@ function information() {
   unset($unModele);
   }
   }
+
   function modifier(){
   global $tabRes;
   $titre=$_POST['titreF'];
@@ -183,6 +221,7 @@ function information() {
   $ligne=$stmt->fetch(PDO::FETCH_OBJ);
   $anciennePochette=$ligne->pochette;
   $pochette=$unModele->verserFichier("pochettes", "pochette",$anciennePochette,$titre);
+
   $requete="UPDATE films SET titre=?,duree=?, res=?, pochette=? WHERE idf=?";
   $unModele=new filmsModele($requete,array($titre,$duree,$res,$pochette,$idf));
   $stmt=$unModele->executer();

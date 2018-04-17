@@ -19,11 +19,11 @@ function formulaireloginU () {
                 resul+="<form id='loginform' class='form-horizontal'  role='form'>";
                     resul+="<div style='margin-bottom: 25px' class='input-group'>";
                         resul+="<span class='input-group-addon'><i class='glyphicon glyphicon-user'></i></span>";
-                        resul+="<input id='email' type='text' class='form-control' name='email' value='' placeholder='Email'>";
+                        resul+="<input id='email' type='text' class='form-control' name='email' value='' placeholder='Email'  required>";
                     resul+="</div>";
                    resul+=" <div style='margin-bottom: 25px' class='input-group'>";
                         resul+="<span class='input-group-addon'><i class='glyphicon glyphicon-lock'></i></span>";
-                        resul+="<input id='password' type='password' class='form-control' name='password' placeholder='Password'>";
+                        resul+="<input id='password' type='password' class='form-control' name='password' placeholder='Password'  required>";
                     resul+="</div>";
                     resul+="<div class='input-group'>";
                         resul+="<div class='checkbox'>";
