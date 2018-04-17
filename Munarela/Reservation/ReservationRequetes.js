@@ -157,7 +157,13 @@ function RamenerCircuit(rid) {
                     };
                 })
             });
-
+           
+            $("#formreservation").submit(function(){
+                if ($("#montantpayerdepot").is(":checked")){
+                    $("#amount").val($("#amount").val()*0.3);
+                }
+            });
+            
         },
         fail: function (err) {
         }
