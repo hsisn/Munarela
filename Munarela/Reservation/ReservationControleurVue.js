@@ -110,8 +110,8 @@ function formulaireR() {
     result += "<input type='hidden' name='cancel_return' value='http://localhost/project1/cancel.php'/>";
     result += "<input type='hidden' name='currency_code' value='CAD'/>";
     result += "<input type='hidden' name='custom' value='Munarela'/>";
-    result += "<div style='text-align:right; width: 100%; padding-right: 10%'><input type='radio' name='montantpayer' value='depot'> Payer Dépot&nbsp;&nbsp;&nbsp;";
-    result += "<input type='radio' name='montantpayer' value='tout'> Tout Payer &nbsp;&nbsp;<span style='color: red; font-weight: bold; font-size: 20px ' id='montantpayervalue'>1000</span></div><br>";
+    result += "<div style='text-align:right; width: 100%; padding-right: 8%'><input type='radio' name='montantpayer' id='montantpayerdepot' checked='checked'> Payer Dépot&nbsp;(30%)&nbsp;&nbsp;";
+    result += "<input type='radio' name='montantpayer' id='montantpayertout' > Tout Payer &nbsp;&nbsp;<span style='color: red; font-weight: bold; font-size: 20px ' id='montantpayervalue'></span></div><br>";
     result += "<input style='float:right;margin-right:80px;' type='image' name='submit'";
     result += "src='https://www.paypalobjects.com/webstatic/en_US/i/btn/png/blue-rect-paypalcheckout-60px.png' alt='PayPal '";
     result += "alt='PayPal - The safer, easier way to pay online'>";
@@ -123,9 +123,9 @@ function formulaireR() {
     result += "  </form>";
     result += " </div>";
 
+   
 
-    $('#get_result').html(result);
-
+    $('#get_result').html(result);    
 }
 
 
@@ -228,7 +228,7 @@ var reservationVue = function (reponse) {
             listerP(reponse.listetheme);
             break;
         case "formulaire" :
-            formulaireR();
+            formulaireR();            
             break;
             case "previewForm" :
             previewForm(reponse);
