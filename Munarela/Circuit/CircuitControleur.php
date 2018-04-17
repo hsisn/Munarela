@@ -15,9 +15,8 @@ if (isset($_GET['idCircuit'])) {
 
 $tabRes = array();
 
-/** Function qui ...*/
-function enregistrerCircuit()
-{
+/** Function qui ... */
+function enregistrerCircuit() {
     global $tabRes;
 
     $nomCircuit = $_POST['nomCircuit'];
@@ -52,12 +51,17 @@ function enregistrerCircuit()
     }
 }
 
-/** Function qui sert au admin ...*/
-function listerLesCircuit()
-{
+/** Function qui sert au admin ou client... */
+function listerLesCircuit() {
     global $tabRes;
     $tabRes['action'] = "listerLesCircuits";
-    $requete = "SELECT * FROM circuit";
+    
+    if(isset($_POST["client"])) {
+        $requete = "SELECT * FROM circuit WHERE published=1";
+    }else{
+         $requete = "SELECT * FROM circuit";
+    }
+    
     try {
         $unModele = new circuitModel($requete, []);
         $stmt = $unModele->executer();
@@ -72,18 +76,16 @@ function listerLesCircuit()
     }
 }
 
-
 /** Function qui prend tous les details sur un circuit afin de les afficher a l'utilisateur
-cette function est aussi appelée apres la modification d'un circuit par l'admin pour qu'il
-voit le résultat */
-function getDetailCircuit()
-{
+  cette function est aussi appelée apres la modification d'un circuit par l'admin pour qu'il
+  voit le résultat */
+function getDetailCircuit() {
     global $tabRes;
 
     $idCircuit = $_POST['idCircuit'];
-    $_SESSION["idCircuit"] =$idCircuit;
+    $_SESSION["idCircuit"] = $idCircuit;
     $requete = "SELECT * FROM jour,Etape,Circuit WHERE Circuit.idCircuit = Etape.idCircuit AND Etape.idEtape = jour.IdEtape "
-        . "AND Circuit.idCircuit = ?";
+            . "AND Circuit.idCircuit = ?";
     try {
         $unModele = new circuitModel($requete, array($idCircuit));
         $stmt = $unModele->executer();
@@ -116,9 +118,8 @@ function getDetailCircuit()
     echo json_encode($tabRes);
 }
 
-/** Function qui ...*/
-function listerCircuitParThematique()
-{
+/** Function qui ... */
+function listerCircuitParThematique() {
     global $tabRes;
     listerPromotions();
     $tabRes['action'] = "listerCircuitParThematique";
@@ -138,9 +139,8 @@ function listerCircuitParThematique()
     echo json_encode($tabRes);
 }
 
-/** Function qui ...*/
-function ficheCircuit()
-{
+/** Function qui ... */
+function ficheCircuit() {
     global $tabRes;
     include '../Thematique/ThematiqueControleur.php';
 
@@ -175,9 +175,8 @@ function ficheCircuit()
     echo json_encode($tabRes);
 }
 
-/** Function qui ...*/
-function effacerCircuit()
-{
+/** Function qui ... */
+function effacerCircuit() {
     global $tabRes;
     $idCircuit = $_POST['idCircuit'];
     try {
@@ -192,16 +191,14 @@ function effacerCircuit()
             $tabRes['msg'] = "Circuit " . $idCircuit . " bien enleve";
         }
     } catch (Exception $e) {
-
+        
     } finally {
         unset($unModele);
     }
 }
 
-/** Function qui ...*/
-
-function modifierCircuit()
-{
+/** Function qui ... */
+function modifierCircuit() {
     global $tabRes;
     $idCircuit = $_POST['idCircuit'];
     $nomCircuit = $_POST['nomCircuit'];
@@ -229,8 +226,8 @@ function modifierCircuit()
         $anciennePochette = $ligne->imageCircuit;
         $imageCircuit = $unModele->verserFichier("pochettes", "imageCircuit", $anciennePochette, $nomCircuit);
         $requete = "UPDATE circuit SET titre=?,dateDeDepart=?, dateDeRetour=?, nbPersonnesMax=?,"
-            . " nbPersonnesMin=?, description=?, prix=?, imageCircuit=?,"
-            . " guide=?, idPromotion=?, idThematique=? WHERE idCircuit=?";
+                . " nbPersonnesMin=?, description=?, prix=?, imageCircuit=?,"
+                . " guide=?, idPromotion=?, idThematique=? WHERE idCircuit=?";
         $unModele = new circuitModel($requete, array($nomCircuit, $dateDepart, $dateRetour, $nbPersonnesMax, $nbPersonnesMin,
             $description, $prix, $imageCircuit, $guide, $idPromo, $idthematique, $idCircuit));
         $stmt = $unModele->executer();
@@ -243,9 +240,8 @@ function modifierCircuit()
     }
 }
 
-/** Function qui ...*/
-function altPublication()
-{
+/** Function qui ... */
+function altPublication() {
 
     $idCircuit = $_POST['idCircuit'];
     $published = $_POST['published'];
