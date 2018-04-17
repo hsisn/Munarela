@@ -43,8 +43,7 @@ function listerRR() {
 
 function FormulaireR() {
     var reponse = {"action": "formulaire"};
-    reservationVue(reponse);
-
+    reservationVue(reponse);    
     var textLab = parseInt(prixReservation);
 
 
@@ -54,7 +53,6 @@ function FormulaireR() {
                 (parseInt($("#NombreBebe option:selected").val())) * 0.5) * textLab;
         $("#labtotal").text(total + " $");
         $("#amount").val(total);
-        $("#amount_1").val(total * .5);
 
 
     });
@@ -67,7 +65,6 @@ function FormulaireR() {
 
         $("#labtotal").text(total + " $");
         $("#amount").val(total);
-        $("#amount_1").val(total * .5);
 
 
     });
@@ -79,7 +76,6 @@ function FormulaireR() {
 
         $("#labtotal").text(total + " $");
         $("#amount").val(total);
-        $("#amount_1").val(total * .5);
 
     });
 
