@@ -5,7 +5,7 @@
  */
 
 function rendreVisible(elem) {
-  document.getElementById(elem).style.display = "block";
+  document.getElementById(elem).style.display = "block"; 
 }
 
 function rendreInvisible(elem) {
