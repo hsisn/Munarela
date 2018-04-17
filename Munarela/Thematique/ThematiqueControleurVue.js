@@ -68,24 +68,6 @@ function listerT(listetheme) {
 
 }
 
-/*function afficherFiche(reponse){
- var uneFiche;
- if(reponse.OK){
- uneFiche=reponse.fiche;
- $('#formFicheF h3:first-child').html("Fiche du film numero "+uneFiche.idf);
- $('#idf').val(uneFiche.idf);
- $('#titreF').val(uneFiche.titre);
- $('#dureeF').val(uneFiche.duree);
- $('#resF').val(uneFiche.res);
- $('#divFormFiche').show();
- document.getElementById('divFormFiche').style.display='block';
- }else{
- $('#messages').html("Film "+$('#numF').val()+" introuvable");
- setTimeout(function(){ $('#messages').html(""); }, 5000);
- }
- 
- }
- */
 var thematiqueVue = function (reponse) {
     var action = reponse.action;
     switch (action) {

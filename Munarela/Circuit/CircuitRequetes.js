@@ -60,9 +60,8 @@ function AfficherDetailsCircuit(idCircuit) {
         data: formCircuit,
         contentType: false,
         processData: false,
-        dataType: "json", //text pour le voir en format de string
+        dataType: "json",
         success: function (reponse) {
-            //alert(JSON.stringify(reponse));
             CircuitVue(reponse);
         },
         fail: function (err) {}
@@ -72,7 +71,12 @@ function AfficherDetailsCircuit(idCircuit) {
 //Fonction qui liste les circuits pour l'admin
 function listerCircuits() {
     var formListerCircuit = new FormData();
-    formListerCircuit.append("action", "listerCircuit"); //alert(formFilm.get("action"));
+    formListerCircuit.append("action", "listerCircuit");
+    alert(JSON.stringify(listeThemes));
+    if (client)
+    {
+        formListerCircuit.append("client", "oui");
+    }
     $.ajax({
         type: "POST",
         url: "Circuit/CircuitControleur.php",
@@ -81,8 +85,16 @@ function listerCircuits() {
         processData: false,
         dataType: "json", //text pour le voir en format de string
         success: function (reponse) {
-            //alert(JSON.stringify(reponse));
-            CircuitVue(reponse);
+            if (client) {
+                //code a faire pour afficher le drowdown
+                $.each(reponse.listecircuit, function (index, circuit) {
+                    $("#circuitDropdown").append('<li onclick="AfficherDetailsCircuit('+circuit.idCircuit+');return false;"><a>'+ circuit.titre + "</a></li>");
+                });
+
+                client = null;
+            } else {
+                CircuitVue(reponse);
+            }
         },
         fail: function (err) {}
     });
@@ -164,7 +176,7 @@ function requeteModifierCircuit() {
         processData: false,
         dataType: "json",
         success: function (reponse) {
-           AfficherDetailsCircuit(reponse.idCircuit);
+            AfficherDetailsCircuit(reponse.idCircuit);
         },
         fail: function (err) {}
     });
@@ -175,7 +187,7 @@ function FormulaireCircuit() {
     $("#sommaire").html("creation des circuits");
     var formThem = new FormData();
     formThem.append("action", "lister"); //alert(formFilm.get("action"));
-    formThem.append("getPromo","oui");
+    formThem.append("getPromo", "oui");
     $.ajax({
         type: "POST",
         url: "Thematique/ThematiqueControleur.php",

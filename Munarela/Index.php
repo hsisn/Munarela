@@ -52,7 +52,6 @@ include_once 'includes/init.php';
         <link rel='stylesheet' href='Untitled_fichiers/footer-servitech.css'>
         <link rel='stylesheet' href='Untitled_fichiers/aos.css'>
 
-        <script src='Circuit/CircuitAPIJQuery.js' type='text/javascript'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js'></script>
         <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
@@ -86,15 +85,12 @@ include_once 'includes/init.php';
                             <ul class='nav navbar-nav ' >
                                 <li class='active' ><a href='index.php'  ><span class='glyphicon glyphicon-home' style='font-size: 25px; color: white'></span></a></li>
                                 <li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='#' style='color: white'>Circuits <span class='caret'></span></a>
-                                    <ul id='circuitDropdown' class='dropdown-menu'>                                       
+                                    <ul id='circuitDropdown' class='dropdown-menu'>                                      
 
                                     </ul>
                                 </li>
                                 <li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='#' style='color: white'>Thémes <span class='caret'></span></a>
-                                    <ul class='dropdown-menu'>
-                                        <li><a href='#'>Théme-1</a></li>
-                                        <li><a href='#'>Théme-2</a></li>
-                                        <li><a href='#'>Théme-3</a></li>
+                                    <ul id="themeDropdown" class='dropdown-menu'>
 
                                     </ul>
                                 </li>
