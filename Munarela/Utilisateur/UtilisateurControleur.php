@@ -74,40 +74,6 @@ function register() {
         unset($unModele);
     }
 
-
-
-
-
-    ///$errors = [];
-    /////////////
-    /*            if ($_SERVER['REQUEST_METHOD'] == 'POST')
-      {
-      if (email_exists($email))
-      {
-      $errors[] = "$email deja enregistrer.";
-      $tabRes['msg']=$errors[];
-      }
-
-      if (!empty($errors)) {
-      foreach ($errors as $error) {
-      validation_errors($error);
-      }
-      }else{
-      $sql = "INSERT INTO utilisateur (first_name, last_name, display_name, email, password, date_added)
-      VALUES ('$first_name', '$last_name', '$display_name', '$email', '$password', now())";
-      $_SESSION["uid"] = mysqli_insert_id($connexion);
-      if ($connexion->query($sql) === TRUE) {
-      $tabRes['msg']="index";
-
-
-      } else {
-      $tabRes['msg']=set_message("<p>Error: " . $sql . "<br>" . $connexion->error . "</p>");
-      }
-      $tabRes['msg']=set_message("<p>Error: " . $sql . "<br>" . $connexion->error . "</p>");
-      $connexion->close();
-      }
-      }
-     */       //////////////       //////////////
 }
 
 function logout() {

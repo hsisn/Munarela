@@ -20,19 +20,20 @@ function enregistrer() {
         type: 'POST',
         url: 'participants/participantsControleur.php',
         data: formFilm,
-        dataType: 'text', //text pour le voir en format de string
+        dataType: 'json', //text pour le voir en format de string
         //async : false,
         //cache : false,
         contentType: false,
         processData: false,
         success: function (reponse) {
-            //alert(reponse);
+            alert("la reponse = "+reponse+" mon prix "+reponse.prixCircuit+" existe "+reponse.existe);
             if (reponse.existe) {
                 alert('vous avez déja réservé ce circuit');
                 listerTT();
                 return;
             }
-            filmsVue(reponse);
+            $('#labtotal').text(reponse.prixCircuit);
+            //filmsVue(reponse);
         },
         fail: function (err) {
 

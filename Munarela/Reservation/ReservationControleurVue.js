@@ -53,7 +53,7 @@ function formulaireR() {
     result += "                        <div class=\"container fluid\" style=\"width: 40% ; float: left; margin-left: 60px\" >";
     result += "                            <div class=\"form-group \" >";
     result += "                                <label for=\"texttotalCircuit\">Prix total du circuit:</label>";
-    result += "                                 <label for=\"totalCircuit\" style='color:red;font-size:25px;margin:5px' id='labtotal' name='labtotal' >4500</label>";
+    result += "                                 <label for=\"totalCircuit\" style='color:red;font-size:25px;margin:5px' id='labtotal' name='labtotal' ></label>";
     result += "                            </div>";
 
     result += "                        </div>";

@@ -4,8 +4,7 @@ session_start();
 require_once "../includes/modele.inc.php";
 $tabRes = array();
 
-function enregistrer()
-{
+function enregistrer() {
 
     global $tabRes;
 
@@ -15,7 +14,8 @@ function enregistrer()
     $idUtilisateur = $_SESSION['idUtilisateur'];
     $prix = $_POST['prixhidden'];
     $idCircuit = $_SESSION['idCircuit'];
-
+    $tabRes['prixCircuit'] = $prix;
+    
     //information sur le participant principal
     $nomParticipant = $_POST['nomParticipant'];
     $prenomParticipant = $_POST['prenomParticipant'];
@@ -222,32 +222,16 @@ function enregistrer()
         }
     }
     $tabRes['action'] = "enregistrer";
+
     $tabRes['msg'] = "Participant bien enregistré";
 }
 
 //create dynamic  form with jquery php mysql
 //http://talkerscode.com/webtricks/create-dynamic-form-using-php-jquery-and-mysql.php
 
-function lister()
-{
+function lister() {
     global $tabRes;
     $tabRes['action'] = "lister";
-    /*
-    $requete = "SELECT * FROM participants";
-    select * FROM participants P, reservation R, reservationparticipant V WHERE
-    P.idparticipants = V.idParticipants and
-    R.idReservation = V.idReservation and
-    R.idCircuit = 6 and
-    R.idUtilisateur = 1;
-     *
-     * select * FROM participants P, reservation R, reservationparticipant V, adresse A, passeport S WHERE
-    P.idparticipants = V.idParticipants and
-    R.idReservation = V.idReservation and
-    P.idAdresse=A.idAdresse and
-    P.idPasspor=S.idPasspor and
-    R.idCircuit = 4 and
-    R.idUtilisateur = 5;
-     */
 
     $requete = "SELECT * FROM participants";
     try {
@@ -258,14 +242,13 @@ function lister()
             $tabRes['listeFilms'][] = $ligne;
         }
     } catch (Exception $e) {
-
+        
     } finally {
         unset($unModele);
     }
 }
 
-function listerParticipant()
-{
+function listerParticipant() {
     global $tabRes;
     $tabRes['action'] = "lister";
     $idUtilisateur = $_SESSION['idUtilisateur'];
@@ -293,8 +276,7 @@ function listerParticipant()
     }
 }
 
-function afficher()
-{
+function afficher() {
     global $tabRes;
 //    $adulte = $_POST["NombreAdulte"];
     //    $enfant = $_POST["NombreEnfant"];
@@ -498,14 +480,13 @@ function afficher()
 
         $tabRes['msg'] = $rep;
     } catch (Exception $e) {
-
+        
     } finally {
-
+        
     }
 }
 
-function enleverParticipant()
-{
+function enleverParticipant() {
     global $tabRes;
 
     $idParticpant = $_POST['listParticipant'];
@@ -535,8 +516,7 @@ function enleverParticipant()
     }
 }
 
-function fiche()
-{
+function fiche() {
     global $tabRes;
     $idf = $_POST['numF'];
     $tabRes['action'] = "fiche";
@@ -552,15 +532,14 @@ function fiche()
             $tabRes['OK'] = false;
         }
     } catch (Exception $e) {
-
+        
     } finally {
         unset($unModele);
     }
 }
 
 //methode fiche
-function detail()
-{
+function detail() {
     global $tabRes;
     $idParticipant = $_POST['listParticipant'];
     $tabRes['action'] = "detail";
@@ -620,8 +599,7 @@ function detail()
     }
 }
 
-function modifierParticipant()
-{
+function modifierParticipant() {
     global $tabRes;
 
     $idParticipant = $_POST['idParticipant'];
@@ -653,7 +631,7 @@ function modifierParticipant()
         //                $imageCircuit = $unModele->verserFichier("pochettes", "imageCircuit", $anciennePochette, $nomCircuit);
 
         $requete = "UPDATE participants SET nom=?,prenom=?, courriel=?, sexe=?,"
-            . " tel=? WHERE idparticipants=?";
+                . " tel=? WHERE idparticipants=?";
         $unModele = new circuitModel($requete, array($nomParticipant, $prenomParticipant, $courielParticipant, $sexeParticipant, $telephone,
             $idParticipant));
         $stmt = $unModele->executer();
@@ -663,7 +641,7 @@ function modifierParticipant()
         $stmt = $unModele->executer();
 
         $requete = "UPDATE passeport SET numeroPass=?,dateDelivPass=?, dateExpiration=?, nationalites=?,"
-            . " lieuDeliv=? WHERE idPasspor=?";
+                . " lieuDeliv=? WHERE idPasspor=?";
         $unModele = new circuitModel($requete, array($numeroPasseport, $dateDelPasseport, $dateExpPasseport, $nationalite, $delivrerAExpPasseport,
             $idPasseport));
         $stmt = $unModele->executer();
@@ -677,8 +655,7 @@ function modifierParticipant()
     }
 }
 
-function afficherFormulaireTous()
-{
+function afficherFormulaireTous() {
     global $tabRes;
 
     $adulte = $_POST["NombreAdulte"];
@@ -724,8 +701,7 @@ function afficherFormulaireTous()
     $tabRes['idUtilisateur'] = $idUtilisateur;
 }
 
-function ajoutPart()
-{
+function ajoutPart() {
     try {
         $requete = "INSERT INTO adresse VALUES(0,?,?,?)";
         $unModele = new circuitModel($requete, array($villeParticipant, $codePostalParticipant, $paysParticipant));
