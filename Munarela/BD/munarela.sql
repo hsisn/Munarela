@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 09 Avril 2018 à 06:13
+-- Généré le :  Mar 17 Avril 2018 à 20:28
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.5.8
 
@@ -34,19 +34,27 @@ CREATE TABLE IF NOT EXISTS `adresse` (
   `codePostale` varchar(45) NOT NULL,
   `pays` varchar(100) NOT NULL,
   PRIMARY KEY (`idAdresse`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=58 ;
 
 --
 -- Contenu de la table `adresse`
 --
 
 INSERT INTO `adresse` (`idAdresse`, `ville`, `codePostale`, `pays`) VALUES
-(1, 'MONTRÃ‰AL-NORD', 'H1H 3R7', 'CA'),
-(2, 'mamamamam', '', ''),
-(3, '', '', ''),
-(4, 'aaaaa', '', ''),
-(5, 'aaa', '', ''),
-(6, 'aaaassss', '', '');
+(44, '', '', ''),
+(45, '', '', ''),
+(46, '', '', ''),
+(47, '', '', ''),
+(48, '', '', ''),
+(49, '', '', ''),
+(50, '', '', ''),
+(51, '', '', ''),
+(52, '', '', ''),
+(53, '', '', ''),
+(54, '', '', ''),
+(55, '', '', ''),
+(56, '', '', ''),
+(57, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -97,16 +105,16 @@ CREATE TABLE IF NOT EXISTS `circuit` (
   PRIMARY KEY (`idCircuit`),
   KEY `idPromotion` (`idPromotion`),
   KEY `idThematique` (`idThematique`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Contenu de la table `circuit`
 --
 
 INSERT INTO `circuit` (`idCircuit`, `titre`, `dateDeDepart`, `dateDeRetour`, `nbPersonnesMax`, `nbPersonnesMin`, `description`, `prix`, `imageCircuit`, `guide`, `idPromotion`, `idThematique`, `published`) VALUES
-(4, 'Circuit A', '2018-03-01 05:00:00.000000', '2018-03-02 05:00:00.000000', 2, 4, 'un premier circuit', 3111, 'pic', NULL, NULL, 1, 0),
-(5, 'Circuit Australien', '2018-03-03 05:00:00.000000', '2018-03-15 04:00:00.000000', 1, 2, 'kangorouuu', 3999, 'aucune', NULL, NULL, 1, 0),
-(6, 'un circuit', '2018-04-15 04:00:00.000000', '2018-04-22 04:00:00.000000', 20, 10, '<p>resume du circuit</p>\r\n', 2000, 'ad90a19282ed43d0732163ccfdb441a544018560.jpg', NULL, NULL, 1, 0);
+(6, 'un circuit blabla', '2018-04-17 18:06:37.630461', '2018-04-22 04:00:00.000000', 20, 10, '<p>resume du circuit</p>\r\n', 2000, 'ad90a19282ed43d0732163ccfdb441a544018560.jpg', 'null', NULL, 1, 0),
+(11, 'aaaa', '2018-04-17 18:06:52.498948', '2018-04-25 04:00:00.000000', 2, 1, '<p>blabla circuit</p>\r\n', 2000, '715cb5d4a49102a6cc54d71cba7a0b76f885a750.jpg', NULL, NULL, 1, 1),
+(12, 'aaaa', '2018-04-17 18:06:53.637062', '2018-04-10 04:00:00.000000', 2, 1, '<p>blabla</p>\r\n', 3699, '1f58c32247b5b88247865adf58153209082c6455.jpg', NULL, NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -121,14 +129,17 @@ CREATE TABLE IF NOT EXISTS `etape` (
   `idCircuit` int(11) NOT NULL,
   PRIMARY KEY (`idEtape`),
   KEY `idCircuit` (`idCircuit`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Contenu de la table `etape`
 --
 
 INSERT INTO `etape` (`idEtape`, `nomEtape`, `descriptionEtape`, `idCircuit`) VALUES
-(1, 'premiere etapeun ', '<p>petit descriptif</p>\r\n', 6);
+(1, 'premiere etapeun ', '<p>petit descriptif</p>\r\n', 6),
+(8, 'Nom de letape 1', '<p>description de letape 1</p>\r\n', 11),
+(9, 'Etape Oran', '<p>Tour dans les andalouses</p>\r\n', 12),
+(10, 'mostaganem', '<p>on va voir le meridien de greenwich</p>\r\n', 12);
 
 -- --------------------------------------------------------
 
@@ -144,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `jour` (
   `dejeuner` tinyint(1) NOT NULL DEFAULT '0',
   `diner` tinyint(1) NOT NULL DEFAULT '0',
   `souper` tinyint(1) NOT NULL DEFAULT '0',
-  `description` longtext,
+  `descriptionJour` longtext,
   `idEtape` int(11) NOT NULL,
   KEY `idEtape` (`idEtape`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -153,8 +164,15 @@ CREATE TABLE IF NOT EXISTS `jour` (
 -- Contenu de la table `jour`
 --
 
-INSERT INTO `jour` (`nomhotel`, `urlHotel`, `nomRestaurant`, `urlRestaurant`, `dejeuner`, `diner`, `souper`, `description`, `idEtape`) VALUES
-('alo', 'balo', 'malo', 'talo', 0, 1, 0, '<p>un descriptif</p>\r\n', 1);
+INSERT INTO `jour` (`nomhotel`, `urlHotel`, `nomRestaurant`, `urlRestaurant`, `dejeuner`, `diner`, `souper`, `descriptionJour`, `idEtape`) VALUES
+('alo', 'balo', 'malo', 'talo', 0, 1, 0, '<p>un descriptif</p>\r\n', 1),
+('hotel 11', '', '', '', 0, 0, 0, '<p>description du jour 1</p>\r\n', 8),
+('hotel 12', '', '', '', 0, 0, 0, '<p>description du jour 2</p>\r\n', 8),
+('hotel 12', '', '', '', 0, 0, 0, '<p>description du jour 3</p>\r\n', 8),
+('sheraton', '', '', '', 0, 0, 0, '<p>on va visiter les andalouses</p>\r\n', 9),
+('une hauberge mostaganemois', '', '', '', 0, 0, 0, '<p>on va a stidia</p>\r\n', 10),
+('', '', '', '', 0, 0, 0, '<p>balade en mere fi salamandre</p>\r\n', 10),
+('hotel de centre ville', '', '', '', 0, 0, 0, '<p>discoteque way way</p>\r\n', 10);
 
 -- --------------------------------------------------------
 
@@ -183,14 +201,7 @@ CREATE TABLE IF NOT EXISTS `panier` (
   `email` varchar(60) NOT NULL,
   PRIMARY KEY (`idPanier`),
   KEY `idCircuit` (`idCircuit`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Contenu de la table `panier`
---
-
-INSERT INTO `panier` (`idPanier`, `idCircuit`, `email`) VALUES
-(1, 5, 'asdf@gmail.com');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -210,15 +221,27 @@ CREATE TABLE IF NOT EXISTS `participants` (
   PRIMARY KEY (`idparticipants`),
   KEY `idAdresse` (`idAdresse`),
   KEY `idPasspor` (`idPasspor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 --
 -- Contenu de la table `participants`
 --
 
 INSERT INTO `participants` (`idparticipants`, `nom`, `prenom`, `courriel`, `sexe`, `tel`, `idAdresse`, `idPasspor`) VALUES
-(1, 'aaaaa', '', '', '', '', 5, 1),
-(2, 'aaassss', '', '', '', '', 6, 2);
+(39, 'lala', 'nana', 'jas@hotmail.com', '', '', 44, 40),
+(40, '1111', '', '', '', '', 45, 41),
+(41, 'lala', 'nana', 'jas@hotmail.com', '', '', 46, 42),
+(42, 'assdd', '', '', '', '', 47, 43),
+(43, 'lala', 'nana', 'jas@hotmail.com', '', '', 48, 44),
+(44, 'ssss', '', '', '', '', 49, 45),
+(45, 'lala', 'nana', 'jas@hotmail.com', '', '', 50, 46),
+(46, '123456', '', '', '', '', 51, 47),
+(47, 'lala', 'nana', 'jas@hotmail.com', '', '', 52, 48),
+(48, 'mamamamamam', '', '', '', '', 53, 49),
+(49, 'lala', 'nana', 'jas@hotmail.com', '', '', 54, 50),
+(50, 'nadjib', '', '', '', '', 55, 51),
+(51, 'lala', 'nana', 'jas@hotmail.com', '', '', 56, 52),
+(52, 'lahcene', '', '', '', '', 57, 53);
 
 -- --------------------------------------------------------
 
@@ -234,15 +257,27 @@ CREATE TABLE IF NOT EXISTS `passeport` (
   `nationalites` varchar(100) NOT NULL,
   `lieuDeliv` varchar(256) NOT NULL,
   PRIMARY KEY (`idPasspor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=54 ;
 
 --
 -- Contenu de la table `passeport`
 --
 
 INSERT INTO `passeport` (`idPasspor`, `numeroPass`, `dateDelivPass`, `dateExpiration`, `nationalites`, `lieuDeliv`) VALUES
-(1, 0, '0000-00-00', '0000-00-00', '', ''),
-(2, 0, '2018-04-17', '2018-04-24', '', '');
+(40, 0, '0000-00-00', '0000-00-00', '', ''),
+(41, 0, '0000-00-00', '0000-00-00', '', ''),
+(42, 0, '0000-00-00', '0000-00-00', '', ''),
+(43, 0, '0000-00-00', '0000-00-00', '', ''),
+(44, 0, '0000-00-00', '0000-00-00', '', ''),
+(45, 0, '0000-00-00', '0000-00-00', '', ''),
+(46, 0, '0000-00-00', '0000-00-00', '', ''),
+(47, 0, '0000-00-00', '0000-00-00', '', ''),
+(48, 0, '0000-00-00', '0000-00-00', '', ''),
+(49, 0, '0000-00-00', '0000-00-00', '', ''),
+(50, 0, '0000-00-00', '0000-00-00', '', ''),
+(51, 0, '0000-00-00', '0000-00-00', '', ''),
+(52, 0, '0000-00-00', '0000-00-00', '', ''),
+(53, 0, '0000-00-00', '0000-00-00', '', '');
 
 -- --------------------------------------------------------
 
@@ -272,8 +307,6 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `nbrAdult` int(11) NOT NULL,
   `nbrEnfMTrois` int(11) NOT NULL,
   `NbrEnfBTroisONZ` int(11) NOT NULL,
-  `Etat` varchar(45) NOT NULL,
-  `nPaiment` varchar(45) NOT NULL,
   `datePaiment` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   `idUtilisateur` int(11) NOT NULL,
   `idCircuit` int(11) NOT NULL,
@@ -282,7 +315,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   UNIQUE KEY `idReservation` (`idReservation`,`montanTotal`,`idUtilisateur`,`idCircuit`),
   KEY `idCircuit` (`idCircuit`),
   KEY `idUtilisateur` (`idUtilisateur`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 -- --------------------------------------------------------
 
@@ -398,8 +431,8 @@ ALTER TABLE `panier`
 -- Contraintes pour la table `participants`
 --
 ALTER TABLE `participants`
-  ADD CONSTRAINT `participants_ibfk_1` FOREIGN KEY (`idAdresse`) REFERENCES `adresse` (`idAdresse`),
-  ADD CONSTRAINT `participants_ibfk_2` FOREIGN KEY (`idPasspor`) REFERENCES `passeport` (`idPasspor`);
+  ADD CONSTRAINT `participants_ibfk_1` FOREIGN KEY (`idAdresse`) REFERENCES `adresse` (`idAdresse`) ON DELETE CASCADE,
+  ADD CONSTRAINT `participants_ibfk_2` FOREIGN KEY (`idPasspor`) REFERENCES `passeport` (`idPasspor`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `reservation`
