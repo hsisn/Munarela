@@ -103,7 +103,7 @@ function formulaireR() {
     
     result += "<input type='hidden' name='item_name_1' value='dqd'>";
     result += "<input type='hidden' name='item_number_1' value='1'>";
-    result += "<input type='hidden' name='amount' id='amount'>";
+    result += "<input type='hidden' name='amount_1' id='amount' value='2000'>";
     result += "<input type='hidden' name='quantity_1' value='1'>";
     result += "<input type='hidden' name='return' value='http://localhost/project1/payment_success.php'/>";
     result += "<input type='hidden' name='notify_url' value='http://localhost/project1/payment_success.php'>";
