@@ -15,8 +15,7 @@ function AjouterCircuit() {
         //cache : false,
         contentType: false,
         processData: false,
-        success: function (reponse) {
-            //alert(reponse);
+        success: function (reponse) {            
             CircuitVue(reponse);
             $("#nbEtape").html(nbEtape + 1);
             $("#nbJour").html(nbJour + 1);
@@ -71,8 +70,7 @@ function AfficherDetailsCircuit(idCircuit) {
 //Fonction qui liste les circuits pour l'admin
 function listerCircuits() {
     var formListerCircuit = new FormData();
-    formListerCircuit.append("action", "listerCircuit");
-    alert(JSON.stringify(listeThemes));
+    formListerCircuit.append("action", "listerCircuit");    
     if (client)
     {
         formListerCircuit.append("client", "oui");

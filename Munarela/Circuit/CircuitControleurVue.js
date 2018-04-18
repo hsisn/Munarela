@@ -240,38 +240,54 @@ function lesCircuitListe(rep) {
     var classe = "";
 
     var list = "";
+
+
     list += '<div class="container">';
     list += "  <h3>Liste des circuits</h3>";
-    list += '  <table class="table table-striped">';
-    list += "    <thead>";
-    list += "      <tr>";
-    list += "        <th>Nom</th><th>Prix</th><th>RUD</th>";
-
-    list += "      </tr>";
-    list += "    </thead>";
-    for (var i = 0; i < taille; i++) {
-        //var nbrReservation = listcircuit[i]. / listcircuit[i]. ;
+    for (var j = 0; j < listeThemes.length; j++) {
+        list += "  <h3>" + listeThemes[j].nom + "</h3>";
+        list += '  <table id="theme" class="table table-striped">';
         list += "    <tbody>";
-        list += "      <tr>";
-        list += "        <td>" + listcircuit[i].titre + "</td>";
-        //  list += "        <td><div id='progressbar' value=""></div></td>";
-        list += "        <td>" + listcircuit[i].prix + "</td>";
-        list += "        <td>";
-        list += ' <a href="#" onclick=\'supprimerCircuit(' + listcircuit[i].idCircuit + ');return false\' class="btn btn-primary a-btn-slide-text">';
-        list += ' <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>';
-        list += "</a>";
-        list += ' <a href="#" class="btn btn-primary a-btn-slide-text" onclick="obtenirFicheCircuit(' + listcircuit[i].idCircuit + ');return false">';
-        list += '  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </a>';
-        list += '  <a href="#" class="btn btn-primary a-btn-slide-text" onclick="altPublication(' + listcircuit[i].idCircuit + ',' + listcircuit[i].published + ');return false">';
-        if (listcircuit[i].published === '1') {
-            classe = "glyphicon glyphicon-eye-open";
-        }else{
-            classe="glyphicon glyphicon-eye-close";
+        list += "      <tr class='accordion'>";
+        list += "        <th>Nom</th><th>Prix</th><th>RUD</th>";
+        list += "      </tr>";
+
+        for (var i = 0; i < taille; i++) {
+            if (listcircuit[i].idThematique == listeThemes[j].idThematique) {
+
+                list += "      <tr name='circuit' id='" + listcircuit[i].idCircuit + "' >";
+                list += "        <td>" + listcircuit[i].titre + "</td>";
+                list += "        <td>" + listcircuit[i].prix + "</td>";
+                list += '<td> <a href="#" onclick=\'supprimerCircuit(' + listcircuit[i].idCircuit + ');return false\' class="btn btn-primary a-btn-slide-text">';
+                list += ' <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>';
+
+                list += ' <a href="#" class="btn btn-primary a-btn-slide-text" onclick="obtenirFicheCircuit(' + listcircuit[i].idCircuit + ');return false">';
+                list += '  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </a>';
+                list += '  <a href="#" class="btn btn-primary a-btn-slide-text" onclick="altPublication(' + listcircuit[i].idCircuit + ',' + listcircuit[i].published + ');return false">';
+                if (listcircuit[i].published === '1') {
+                    classe = "glyphicon glyphicon-eye-open";
+                } else {
+                    classe = "glyphicon glyphicon-eye-close";
+                }
+                list += ' <span class="' + classe + '" aria-hidden="true"></span> </a> </td></tr>';
+            }
+           
         }
-        list += ' <span class="' + classe + '" aria-hidden="true"></span> </a> </td></tr><tbody>  ';
+        list+='</tbody>  ';    
+        list += "  </table>";
     }
-    list += "  </table></div>";
+    list += "</div>";
+
     $("#get_result").html(list);
+
+    $(function () {
+        $(".table.table-striped tr:not(.accordion)").hide();
+        $(".table.table-striped tr:first-child").show();
+
+        $(".table.table-striped tr.accordion").click(function () {
+            $(this).nextAll("tr").fadeToggle(500);
+        }).eq(0).trigger('click');
+    });
 }
 
 //fonction pour afficher la fiche du circuit afin de le modifier
