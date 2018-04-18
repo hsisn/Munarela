@@ -43,8 +43,7 @@ function listerRR() {
 
 function FormulaireR() {
     var reponse = {"action": "formulaire"};
-    reservationVue(reponse);
-
+    reservationVue(reponse);    
     var textLab = parseInt(prixReservation);
 
 
@@ -54,9 +53,8 @@ function FormulaireR() {
                 (parseInt($("#NombreBebe option:selected").val())) * 0.5) * textLab;
         $("#labtotal").text(total + " $");
         $("#amount").val(total);
-        $("#amount_1").val(total * .5);
-
-
+        
+        
     });
 
     $('#NombreEnfant').on('change', function () {
@@ -67,8 +65,7 @@ function FormulaireR() {
 
         $("#labtotal").text(total + " $");
         $("#amount").val(total);
-        $("#amount_1").val(total * .5);
-
+       
 
     });
 
@@ -79,7 +76,6 @@ function FormulaireR() {
 
         $("#labtotal").text(total + " $");
         $("#amount").val(total);
-        $("#amount_1").val(total * .5);
 
     });
 
@@ -151,7 +147,23 @@ function RamenerCircuit(rid) {
 
             $("#labtotal").html(reponse.circuitid[0].prix + " $");
             $("#amount").val(reponse.circuitid[0].prix);
-
+            $("#montantpayervalue").text(reponse.circuitid[0].prix*0.3 + " $");
+            $("input[name='montantpayer']").each(function(){
+                $(this).change(function(){                   
+                    if ($("#montantpayerdepot").is(":checked")){
+                         $("#montantpayervalue").text( ($("#amount").val()*0.3)+ " $");                         
+                    } else {
+                         $("#montantpayervalue").text( $("#amount").val()+ " $");
+                    };
+                })
+            });
+           
+            $("#formreservation").submit(function(){
+                if ($("#montantpayerdepot").is(":checked")){
+                    $("#amount").val($("#amount").val()*0.3);
+                }
+            });
+            
         },
         fail: function (err) {
         }

@@ -53,7 +53,7 @@ function formulaireR() {
     result += "                        <div class=\"container fluid\" style=\"width: 40% ; float: left; margin-left: 60px\" >";
     result += "                            <div class=\"form-group \" >";
     result += "                                <label for=\"texttotalCircuit\">Prix total du circuit:</label>";
-    result += "                                 <label for=\"totalCircuit\" style='color:red;font-size:25px;margin:5px' id='labtotal' name='labtotal' >4500</label>";
+    result += "                                 <label for=\"totalCircuit\" style='color:red;font-size:25px;margin:5px' id='labtotal' name='labtotal' ></label>";
     result += "                            </div>";
 
     result += "                        </div>";
@@ -103,13 +103,15 @@ function formulaireR() {
     
     result += "<input type='hidden' name='item_name_1' value='dqd'>";
     result += "<input type='hidden' name='item_number_1' value='1'>";
-    result += "<input type='hidden' name='amount_1' id='amount' value='50'>";
+    result += "<input type='hidden' name='amount' id='amount'>";
     result += "<input type='hidden' name='quantity_1' value='1'>";
     result += "<input type='hidden' name='return' value='http://localhost/project1/payment_success.php'/>";
     result += "<input type='hidden' name='notify_url' value='http://localhost/project1/payment_success.php'>";
     result += "<input type='hidden' name='cancel_return' value='http://localhost/project1/cancel.php'/>";
-    result += "<input type='hidden' name='currency_code' value='USD'/>";
-    result += "<input type='hidden' name='custom' value='Monarela'/>";
+    result += "<input type='hidden' name='currency_code' value='CAD'/>";
+    result += "<input type='hidden' name='custom' value='Munarela'/>";
+    result += "<div style='text-align:right; width: 100%; padding-right: 8%'><input type='radio' name='montantpayer' id='montantpayerdepot' checked='checked'> Payer Dépot&nbsp;(30%)&nbsp;&nbsp;";
+    result += "<input type='radio' name='montantpayer' id='montantpayertout' > Tout Payer &nbsp;&nbsp;<span style='color: red; font-weight: bold; font-size: 20px ' id='montantpayervalue'></span></div><br>";
     result += "<input style='float:right;margin-right:80px;' type='image' name='submit'";
     result += "src='https://www.paypalobjects.com/webstatic/en_US/i/btn/png/blue-rect-paypalcheckout-60px.png' alt='PayPal '";
     result += "alt='PayPal - The safer, easier way to pay online'>";
@@ -121,9 +123,9 @@ function formulaireR() {
     result += "  </form>";
     result += " </div>";
 
+   
 
-    $('#get_result').html(result);
-
+    $('#get_result').html(result);    
 }
 
 
@@ -226,7 +228,7 @@ var reservationVue = function (reponse) {
             listerP(reponse.listetheme);
             break;
         case "formulaire" :
-            formulaireR();
+            formulaireR();            
             break;
             case "previewForm" :
             previewForm(reponse);
