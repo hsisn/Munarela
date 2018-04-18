@@ -64,7 +64,7 @@ function formulaireR() {
     //*************************************************
 
 
-    result += " <div class=\"container\" id='information' style=\" float: left; display : none;\">";
+    result += " <div class=\"container\" id='information' style=\" float: left;\">";
     result += "<hr class='ligne_horizontal'></hr>";
 
     result += "<h4>Informations sur les participants</h4>";

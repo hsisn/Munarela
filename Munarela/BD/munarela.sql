@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 18 Avril 2018 à 16:03
+-- Généré le :  Mer 18 Avril 2018 à 17:51
 -- Version du serveur :  5.6.15-log
 -- Version de PHP :  5.5.8
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `adresse` (
   `codePostale` varchar(45) NOT NULL,
   `pays` varchar(100) NOT NULL,
   PRIMARY KEY (`idAdresse`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=66 ;
 
 --
 -- Contenu de la table `adresse`
@@ -56,7 +56,13 @@ INSERT INTO `adresse` (`idAdresse`, `ville`, `codePostale`, `pays`) VALUES
 (56, '', '', ''),
 (57, '', '', ''),
 (58, '', '', ''),
-(59, '', '', '');
+(59, '', '', ''),
+(60, '', '', ''),
+(61, '', '', ''),
+(62, '', '', ''),
+(63, '', '', ''),
+(64, '', '', ''),
+(65, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -107,17 +113,25 @@ CREATE TABLE IF NOT EXISTS `circuit` (
   PRIMARY KEY (`idCircuit`),
   KEY `idPromotion` (`idPromotion`),
   KEY `idThematique` (`idThematique`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 --
 -- Contenu de la table `circuit`
 --
 
 INSERT INTO `circuit` (`idCircuit`, `titre`, `dateDeDepart`, `dateDeRetour`, `nbPersonnesMax`, `nbPersonnesMin`, `description`, `prix`, `imageCircuit`, `guide`, `idPromotion`, `idThematique`, `published`) VALUES
-(6, 'un circuit blabla', '2018-04-17 18:06:37.630461', '2018-04-22 04:00:00.000000', 20, 10, '<p>resume du circuit</p>\r\n', 2000, 'ad90a19282ed43d0732163ccfdb441a544018560.jpg', 'null', NULL, 1, 0),
+(6, 'un circuit blabla', '2018-04-18 15:14:08.978987', '2018-04-22 04:00:00.000000', 20, 10, '<p>resume du circuit</p>\r\n', 2000, 'ad90a19282ed43d0732163ccfdb441a544018560.jpg', 'null', NULL, 1, 1),
 (11, 'aaaa', '2018-04-17 18:06:52.498948', '2018-04-25 04:00:00.000000', 2, 1, '<p>blabla circuit</p>\r\n', 2000, '715cb5d4a49102a6cc54d71cba7a0b76f885a750.jpg', NULL, NULL, 1, 1),
 (12, 'aaaa', '2018-04-17 18:06:53.637062', '2018-04-10 04:00:00.000000', 2, 1, '<p>blabla</p>\r\n', 3699, '1f58c32247b5b88247865adf58153209082c6455.jpg', NULL, NULL, 1, 1),
-(13, 'phuket ', '2018-04-24 04:00:00.000000', '2018-05-10 04:00:00.000000', 5, 2, '<p>Phuket offre d&eacute;tente, culture et amusement sous les tropiques. Partez en safari &agrave; dos d&rsquo;&eacute;l&eacute;phant ou festoyez jusqu&rsquo;&agrave; l&rsquo;aube &agrave; Patong. D&eacute;couvrez les &icirc;les de la baie de Phang Nga ou explorez la vieille ville de Phuket.</p>\r\n', 2500, '219993a821653406535dc7f2a6f2ef5f8be9467f.jpg', NULL, NULL, 1, 0);
+(13, 'phuket ', '2018-04-18 15:50:53.556062', '2018-05-10 08:00:00.000000', 5, 2, '<p>Phuket offre d&eacute;tente, culture et amusement sous les tropiques. Partez en safari &agrave; dos d&rsquo;&eacute;l&eacute;phant ou festoyez jusqu&rsquo;&agrave; l&rsquo;aube &agrave; Patong. D&eacute;couvrez les &icirc;les de la baie de Phang Nga ou explorez la vieille ville de Phuket.</p>\r\n', 2500, '219993a821653406535dc7f2a6f2ef5f8be9467f.jpg', NULL, NULL, 1, 1),
+(14, 'un circuit blabla', '2018-04-17 22:06:37.630461', '2018-04-22 08:00:00.000000', 20, 10, '<p>resume du circuit</p>\r\n', 2000, 'ad90a19282ed43d0732163ccfdb441a544018560.jpg', 'null', NULL, 2, 0),
+(15, 'aaaa', '2018-04-17 22:06:52.498948', '2018-04-25 08:00:00.000000', 2, 1, '<p>blabla circuit</p>\r\n', 2000, '715cb5d4a49102a6cc54d71cba7a0b76f885a750.jpg', NULL, NULL, 2, 1),
+(16, 'aaaa', '2018-04-17 22:06:53.637062', '2018-04-10 08:00:00.000000', 2, 1, '<p>blabla</p>\r\n', 3699, '1f58c32247b5b88247865adf58153209082c6455.jpg', NULL, NULL, 2, 1),
+(17, 'phuket ', '2018-04-24 08:00:00.000000', '2018-05-10 08:00:00.000000', 5, 2, '<p>Phuket offre d&eacute;tente, culture et amusement sous les tropiques. Partez en safari &agrave; dos d&rsquo;&eacute;l&eacute;phant ou festoyez jusqu&rsquo;&agrave; l&rsquo;aube &agrave; Patong. D&eacute;couvrez les &icirc;les de la baie de Phang Nga ou explorez la vieille ville de Phuket.</p>\r\n', 2500, '219993a821653406535dc7f2a6f2ef5f8be9467f.jpg', NULL, NULL, 2, 0),
+(18, 'un circuit blabla', '2018-04-17 22:06:37.630461', '2018-04-22 08:00:00.000000', 20, 10, '<p>resume du circuit</p>\r\n', 2000, 'ad90a19282ed43d0732163ccfdb441a544018560.jpg', 'null', NULL, 3, 0),
+(19, 'aaaa', '2018-04-17 22:06:52.498948', '2018-04-25 08:00:00.000000', 2, 1, '<p>blabla circuit</p>\r\n', 2000, '715cb5d4a49102a6cc54d71cba7a0b76f885a750.jpg', NULL, NULL, 3, 1),
+(20, 'aaaa', '2018-04-17 22:06:53.637062', '2018-04-10 08:00:00.000000', 2, 1, '<p>blabla</p>\r\n', 3699, '1f58c32247b5b88247865adf58153209082c6455.jpg', NULL, NULL, 3, 1),
+(21, 'phuket ', '2018-04-24 08:00:00.000000', '2018-05-10 08:00:00.000000', 5, 2, '<p>Phuket offre d&eacute;tente, culture et amusement sous les tropiques. Partez en safari &agrave; dos d&rsquo;&eacute;l&eacute;phant ou festoyez jusqu&rsquo;&agrave; l&rsquo;aube &agrave; Patong. D&eacute;couvrez les &icirc;les de la baie de Phang Nga ou explorez la vieille ville de Phuket.</p>\r\n', 2500, '219993a821653406535dc7f2a6f2ef5f8be9467f.jpg', NULL, NULL, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -132,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `etape` (
   `idCircuit` int(11) NOT NULL,
   PRIMARY KEY (`idEtape`),
   KEY `idCircuit` (`idCircuit`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Contenu de la table `etape`
@@ -142,9 +156,7 @@ INSERT INTO `etape` (`idEtape`, `nomEtape`, `descriptionEtape`, `idCircuit`) VAL
 (1, 'premiere etapeun ', '<p>petit descriptif</p>\r\n', 6),
 (8, 'Nom de letape 1', '<p>description de letape 1</p>\r\n', 11),
 (9, 'Etape Oran', '<p>Tour dans les andalouses</p>\r\n', 12),
-(10, 'mostaganem', '<p>on va voir le meridien de greenwich</p>\r\n', 12),
-(11, 'etape 1', '<p>Phuket, la plus grande &icirc;le de Tha&iuml;lande, est un site idyllique avec de longues plages de sable blanc, d&rsquo;agr&eacute;ables eaux turquoise et des for&ecirc;ts encore vierges.</p>\r\n', 13),
-(12, 'etape 2', '<p>Il peut arriver qu&rsquo;on ressente l&rsquo;unique envie de s&rsquo;allonger dans un hamac et de se d&eacute;tendre.</p>\r\n', 13);
+(10, 'mostaganem', '<p>on va voir le meridien de greenwich</p>\r\n', 12);
 
 -- --------------------------------------------------------
 
@@ -177,10 +189,7 @@ INSERT INTO `jour` (`nomhotel`, `urlHotel`, `nomRestaurant`, `urlRestaurant`, `d
 ('sheraton', '', '', '', 0, 0, 0, '<p>on va visiter les andalouses</p>\r\n', 9),
 ('une hauberge mostaganemois', '', '', '', 0, 0, 0, '<p>on va a stidia</p>\r\n', 10),
 ('', '', '', '', 0, 0, 0, '<p>balade en mere fi salamandre</p>\r\n', 10),
-('hotel de centre ville', '', '', '', 0, 0, 0, '<p>discoteque way way</p>\r\n', 10),
-('sheraton', 'www.sheraton.com', '', '', 0, 1, 0, '<p>Vous y trouverez des h&ocirc;tels de luxe, des restaurants de calibre international, des discoth&egrave;ques bond&eacute;es c&ocirc;toyer des march&eacute;s d&eacute;fra&icirc;chis. Dans cet environnement culturel diversifi&eacute;, vous verrez des moines en robe orang&eacute;e croiser des hommes d&rsquo;affaires bien nantis. L&rsquo;expression tha&iuml;landaise &laquo;&nbsp;mai pen rai&nbsp;&raquo;, signifiant &laquo;&nbsp;pas de souci&nbsp;&raquo;, r&eacute;sume bien la philosophie qui anime presque toutes les facettes de la vie sur l&rsquo;&icirc;le.</p>\r\n', 11),
-('hilton', 'www.hilton.com', '', '', 0, 0, 0, '<p>Phuket, une &icirc;le de 48&nbsp;kilom&egrave;tres sur 21&nbsp;kilom&egrave;tres dans la mer d&rsquo;Andaman, se trouve au sud de la c&ocirc;te tha&iuml;landaise en p&eacute;riph&eacute;rie de l&rsquo;oc&eacute;an Indien. Le centre des activit&eacute;s se trouve sur la c&ocirc;te ouest de l&#39;&icirc;le. On y trouve de belles plages et de nombreux villages, et toute la palette passant des n&eacute;ons et des discoth&egrave;ques de la&nbsp;<strong>plage de Patong</strong>&nbsp;&agrave; l&rsquo;ambiance tranquille et familiale de la&nbsp;<strong>plage de Kamala</strong>.</p>\r\n', 11),
-('ritz', 'www.ritz.com', '', '', 0, 0, 0, '<p>&Eacute;vadez-vous vers des baies dissimul&eacute;es telles que&nbsp;<strong>Laem Singh</strong>&nbsp;ou&nbsp;<strong>Kata Noi</strong>&nbsp;et retrouvez le calme et la tranquillit&eacute;, ou offrez-vous un massage dans un des petits abris que l&rsquo;on trouve sur toutes les plages de l&rsquo;&icirc;le. Trouvez la s&eacute;r&eacute;nit&eacute; au pied du&nbsp;<strong>grand Bouddha</strong>&nbsp;ou au temple bouddhiste Samnat Song sur la plage de Nai Harn. En fin d&rsquo;apr&egrave;s-midi, rendez-vous au&nbsp;<strong>cap Promthep</strong>&nbsp;et admirez l&rsquo;horizon infini o&ugrave; d&eacute;cline un soleil rougeoyant.</p>\r\n', 12);
+('hotel de centre ville', '', '', '', 0, 0, 0, '<p>discoteque way way</p>\r\n', 10);
 
 -- --------------------------------------------------------
 
@@ -209,14 +218,7 @@ CREATE TABLE IF NOT EXISTS `panier` (
   `email` varchar(60) NOT NULL,
   PRIMARY KEY (`idPanier`),
   KEY `idCircuit` (`idCircuit`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
-
---
--- Contenu de la table `panier`
---
-
-INSERT INTO `panier` (`idPanier`, `idCircuit`, `email`) VALUES
-(3, 11, 'jas@hotmail.com');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -236,7 +238,7 @@ CREATE TABLE IF NOT EXISTS `participants` (
   PRIMARY KEY (`idparticipants`),
   KEY `idAdresse` (`idAdresse`),
   KEY `idPasspor` (`idPasspor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=61 ;
 
 --
 -- Contenu de la table `participants`
@@ -257,8 +259,14 @@ INSERT INTO `participants` (`idparticipants`, `nom`, `prenom`, `courriel`, `sexe
 (50, 'nadjib', '', '', '', '', 55, 51),
 (51, 'lala', 'nana', 'jas@hotmail.com', '', '', 56, 52),
 (52, 'lahcene', '', '', '', '', 57, 53),
-(53, 'lala', 'nana', 'jas@hotmail.com', '', '', 58, 54),
-(54, 'p1', '', '', '', '', 59, 55);
+(53, 'LOLO', 'NONO', 'naar8@hotmail.com', '', '', 58, 54),
+(54, 'aaaa', '', '', '', '', 59, 55),
+(55, 'LOLO', 'NONO', 'naar8@hotmail.com', '', '', 60, 56),
+(56, '12345', '', '', '', '', 61, 57),
+(57, '', '', '', '', '', 62, 58),
+(58, 'momo', '', '', '', '', 63, 59),
+(59, '', '', '', '', '', 64, 60),
+(60, '', '', '', '', '', 65, 61);
 
 -- --------------------------------------------------------
 
@@ -274,7 +282,7 @@ CREATE TABLE IF NOT EXISTS `passeport` (
   `nationalites` varchar(100) NOT NULL,
   `lieuDeliv` varchar(256) NOT NULL,
   PRIMARY KEY (`idPasspor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=56 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=62 ;
 
 --
 -- Contenu de la table `passeport`
@@ -296,7 +304,13 @@ INSERT INTO `passeport` (`idPasspor`, `numeroPass`, `dateDelivPass`, `dateExpira
 (52, 0, '0000-00-00', '0000-00-00', '', ''),
 (53, 0, '0000-00-00', '0000-00-00', '', ''),
 (54, 0, '0000-00-00', '0000-00-00', '', ''),
-(55, 0, '0000-00-00', '0000-00-00', '', '');
+(55, 0, '0000-00-00', '0000-00-00', '', ''),
+(56, 0, '0000-00-00', '0000-00-00', '', ''),
+(57, 0, '0000-00-00', '0000-00-00', '', ''),
+(58, 0, '0000-00-00', '0000-00-00', '', ''),
+(59, 0, '0000-00-00', '0000-00-00', '', ''),
+(60, 0, '0000-00-00', '0000-00-00', '', ''),
+(61, 0, '0000-00-00', '0000-00-00', '', '');
 
 -- --------------------------------------------------------
 
@@ -334,14 +348,17 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   UNIQUE KEY `idReservation` (`idReservation`,`montanTotal`,`idUtilisateur`,`idCircuit`),
   KEY `idCircuit` (`idCircuit`),
   KEY `idUtilisateur` (`idUtilisateur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 --
 -- Contenu de la table `reservation`
 --
 
 INSERT INTO `reservation` (`idReservation`, `montanTotal`, `nbrPlaceDispo`, `nbrAdult`, `nbrEnfMTrois`, `NbrEnfBTroisONZ`, `datePaiment`, `idUtilisateur`, `idCircuit`, `solde`) VALUES
-(22, 4000, 2, 1, 0, 0, '2018-04-18 19:02:05.000000', 5, 11, 4000);
+(22, 4000, 2, 1, 0, 0, '2018-04-18 21:10:00.000000', 3, 11, 4000),
+(23, 7398, 2, 1, 0, 0, '2018-04-18 21:11:49.000000', 3, 12, 7398),
+(24, 0, 2, 1, 0, 0, '2018-04-18 21:15:01.000000', 4, 6, 0),
+(25, 0, 2, 1, 0, 0, '2018-04-18 21:16:28.000000', 3, 6, 0);
 
 -- --------------------------------------------------------
 
@@ -362,7 +379,13 @@ CREATE TABLE IF NOT EXISTS `reservationparticipant` (
 
 INSERT INTO `reservationparticipant` (`idParticipants`, `idReservation`) VALUES
 (53, 22),
-(54, 22);
+(54, 22),
+(55, 23),
+(56, 23),
+(57, 24),
+(58, 24),
+(59, 25),
+(60, 25);
 
 -- --------------------------------------------------------
 
