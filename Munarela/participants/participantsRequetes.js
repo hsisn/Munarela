@@ -26,14 +26,36 @@ function enregistrer() {
         contentType: false,
         processData: false,
         success: function (reponse) {
-            alert("la reponse = "+reponse+" mon prix "+reponse.prixCircuit+" existe "+reponse.existe);
+            // alert("la reponse = "+reponse+" mon prix "+reponse.prixCircuit+" existe "+reponse.existe);
             if (reponse.existe) {
                 alert('vous avez déja réservé ce circuit');
                 listerTT();
                 return;
             }
-            $('#labtotal').text(reponse.prixCircuit);
-            //filmsVue(reponse);
+            $('#labtotal').text(reponse.prixCircuit + " $");
+            $('#montantpayervalue').text(reponse.prixCircuit + " $");
+
+            $('#information').show();
+
+//histoire reyder*********************************************************************
+            $("#montantpayervalue").text(reponse.circuitid[0].prix * 0.3 + " $");
+            $("input[name='montantpayer']").each(function () {
+                $(this).change(function () {
+                    if ($("#montantpayerdepot").is(":checked")) {
+                        $("#montantpayervalue").text(($("#amount").val() * 0.3) + " $");
+                    } else {
+                        $("#montantpayervalue").text($("#amount").val() + " $");
+                    }
+                    ;
+                })
+            });
+
+            $("#formreservation").submit(function () {
+                if ($("#montantpayerdepot").is(":checked")) {
+                    $("#amount").val($("#amount").val() * 0.3);
+                }
+            });
+//fin histoire reyder*********************************************************************
         },
         fail: function (err) {
 
@@ -61,6 +83,7 @@ function ajouterParticipant() {
         success: function (reponse) {
             //alert(reponse);
             filmsVue(reponse);
+        
         },
         fail: function (err) {
 
@@ -148,8 +171,8 @@ function detailParticipant() {
         processData: false,
         dataType: 'json',
         success: function (reponse) {
-           
-           
+
+
             filmsVue(reponse);
             $('select').hide();
             $("input[type=text][id=nomParticipant]").val(reponse.detailParticipant.nom);

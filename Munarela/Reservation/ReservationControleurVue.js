@@ -59,11 +59,12 @@ function formulaireR() {
     result += "                        </div>";
 
     result += "     </div>";
+    result += "     </div>";
 
     //*************************************************
 
 
-    result += " <div class=\"container\" style=\" float: left; \">";
+    result += " <div class=\"container\" id='information' style=\" float: left; display : none;\">";
     result += "<hr class='ligne_horizontal'></hr>";
 
     result += "<h4>Informations sur les participants</h4>";
@@ -76,14 +77,14 @@ function formulaireR() {
 
     result += "                                <a href='#'class='btn btn-primary' cid='previsualiser'>Previsualiser la Reservation </a>";
     result += "                      </div>";
-    result += "  <div id='vuePart1' class=\"container fluid\" style=\"width: 40% ; float: left; \" >";
-
-
-    result += "                <br>";
-    result += "                <br>";
-
-    result += "                                <a href='#'class='btn btn-primary' cid='previsualiser' onClick='preview();'>Previsualiser la Reservation </a>";
-    result += "                      </div>";
+//    result += "  <div id='vuePart1' class=\"container fluid\" style=\"width: 40% ; float: left; \" >";
+//
+//
+//    result += "                <br>";
+//    result += "                <br>";
+//
+//    result += "                                <a href='#'class='btn btn-primary' cid='previsualiser' onClick='preview();'>Previsualiser la Reservation </a>";
+//    result += "                      </div>";
 
 
     result += "                        <div class=\"container fluid\" style=\"width: 40% ; float: left; margin-left: 60px\" >";
@@ -96,24 +97,26 @@ function formulaireR() {
 
     result += "                                </div>";
 
-    result += "            </div>";
-   
+ 
 
 
-    
+
+
     result += "<input type='hidden' name='item_name_1' value='dqd'>";
     result += "<input type='hidden' name='item_number_1' value='1'>";
-    result += "<input type='hidden' name='amount_1' id='amount' value='50'>";
+    result += "<input type='hidden' name='amount_1' id='amount' value='2000'>";
     result += "<input type='hidden' name='quantity_1' value='1'>";
     result += "<input type='hidden' name='return' value='http://localhost/project1/payment_success.php'/>";
     result += "<input type='hidden' name='notify_url' value='http://localhost/project1/payment_success.php'>";
     result += "<input type='hidden' name='cancel_return' value='http://localhost/project1/cancel.php'/>";
-    result += "<input type='hidden' name='currency_code' value='USD'/>";
-    result += "<input type='hidden' name='custom' value='Monarela'/>";
+    result += "<input type='hidden' name='currency_code' value='CAD'/>";
+    result += "<input type='hidden' name='custom' value='Munarela'/>";
+    result += "<div style='text-align:right; width: 100%; padding-right: 8%'><input type='radio' name='montantpayer' id='montantpayerdepot' checked='checked'> Payer Dépot&nbsp;(30%)&nbsp;&nbsp;";
+    result += "<input type='radio' name='montantpayer' id='montantpayertout' > Tout Payer &nbsp;&nbsp;<span style='color: red; font-weight: bold; font-size: 20px ' id='montantpayervalue'></span></div><br>";
     result += "<input style='float:right;margin-right:80px;' type='image' name='submit'";
     result += "src='https://www.paypalobjects.com/webstatic/en_US/i/btn/png/blue-rect-paypalcheckout-60px.png' alt='PayPal '";
     result += "alt='PayPal - The safer, easier way to pay online'>";
-
+   result += "            </div>";
     //******************************************************
     result += "                <br>";
     result += "                <br>";
@@ -122,8 +125,11 @@ function formulaireR() {
     result += " </div>";
 
 
-    $('#get_result').html(result);
 
+    $('#get_result').html(result);
+    
+  
+    
 }
 
 
@@ -185,29 +191,43 @@ function listerP(listeParticpants) {
     $('#vuePart').html(rep);
 }
 
+function listerTouteReservation(reponse) {
 
-function previewForm(reponse){
-    
-    
+    var listReservation = reponse.lesReservation;
+    var taille = listReservation.length;
+    var classe = "";
+
+    var list = "";
+    list += '<div class="container">';
+    list += "  <h3>Liste des réservation</h3>";
+    list += '  <table class="table table-striped">';
+    list += "    <thead>";
+    list += "      <tr>";
+    list += "        <th>idCircuit</th><th>idUtilisateur</th><th>idRéservation</th><th>Nombre places</th>";
+    list += "      </tr>";
+    list += "    </thead>";
+    for (var i = 0; i < taille; i++) {
+        list += "    <tbody>";
+        list += "      <tr>";
+        list += "        <td>" + listReservation[i].idCircuit + "</td>";
+        list += "        <td>" + listReservation[i].idUtilisateur + "</td>";
+        list += "        <td>" + listReservation[i].idReservation + "</td>";
+        list += "        <td>" + listReservation[i].nbrPlaceDispo + "</td>";
+        
+
+    }
+    list += "  </tr></table></div>";
+    $("#get_result").html(list);
+
+
+
 }
-/*function afficherFiche(reponse){
- var uneFiche;
- if(reponse.OK){
- uneFiche=reponse.fiche;
- $('#formFicheF h3:first-child').html("Fiche du film numero "+uneFiche.idf);
- $('#idf').val(uneFiche.idf);
- $('#titreF').val(uneFiche.titre);
- $('#dureeF').val(uneFiche.duree);
- $('#resF').val(uneFiche.res);
- $('#divFormFiche').show();
- document.getElementById('divFormFiche').style.display='block';
- }else{
- $('#messages').html("Film "+$('#numF').val()+" introuvable");
- setTimeout(function(){ $('#messages').html(""); }, 5000);
- }
- 
- }
- */
+
+function previewForm(reponse) {
+
+
+}
+
 var reservationVue = function (reponse) {
     var action = reponse.action;
     switch (action) {
@@ -228,9 +248,15 @@ var reservationVue = function (reponse) {
         case "formulaire" :
             formulaireR();
             break;
-            case "previewForm" :
+        case "listerTouteReservation" :
+            //alert('je suis dans le switch');
+            listerTouteReservation(reponse);
+            break;
+
+        case "previewForm" :
             previewForm(reponse);
             break;
+
 
 
 
