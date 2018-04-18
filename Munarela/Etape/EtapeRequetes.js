@@ -52,9 +52,10 @@ function AjouterEtape() {
 }
 
 //Requete pour recupérer toutes les étapes d'un circuit donnée
-function listerEtapes() {
+function listerEtapes(idCircuit) {
     var formListerEtapes = new FormData();
     formListerEtapes.append("action", "listerEtapes"); 
+    formListerEtapes.append("idCircuit", idCircuit);
     $.ajax({
         type: "POST",
         url: "Etape/EtapeControleur.php",
@@ -62,9 +63,8 @@ function listerEtapes() {
         contentType: false,
         processData: false,
         dataType: "json", 
-        success: function (reponse) {
-            //alert(JSON.stringify(reponse));
-            //CircuitVue(reponse);
+        success: function (reponse) {     
+            setEtapes(reponse.listeEtapes);
         },
         fail: function (err) {}
     });

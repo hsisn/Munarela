@@ -61,6 +61,7 @@ function ajouterParticipant() {
         success: function (reponse) {
             //alert(reponse);
             filmsVue(reponse);
+        
         },
         fail: function (err) {
 
@@ -148,8 +149,8 @@ function detailParticipant() {
         processData: false,
         dataType: 'json',
         success: function (reponse) {
-           
-           
+
+
             filmsVue(reponse);
             $('select').hide();
             $("input[type=text][id=nomParticipant]").val(reponse.detailParticipant.nom);

@@ -47,6 +47,9 @@ include_once 'includes/init.php';
 
         <script src="Panier/PanierControleurVue.js" type="text/javascript"></script>
         <script src="Panier/PanierRequetes.js" type="text/javascript"></script>
+        
+                <script src="promotion/promotionControleurVue.js" type="text/javascript"></script>
+        <script src="promotion/promotionRequetes.js" type="text/javascript"></script>
 
         <link rel='stylesheet' href='Untitled_fichiers/ionicons.css'>
         <link rel='stylesheet' href='Untitled_fichiers/footer-servitech.css'>
@@ -104,8 +107,8 @@ include_once 'includes/init.php';
                                     <li><a href='#' style='color: white' onClick='formulairelogin();'><span class='glyphicon glyphicon-log-in'></span> Se connecter</a></li>
                                 <?php else : ?>
                                     <li><a href='#' style='color: white' onClick='logoutU();'>Deconnecter</a></li>
-                                    
-                                    <li><a style='color: white' href=''><?php   echo 'Bonjour  ' .get_name($_SESSION['email']) ; ?></a></li>
+
+                                    <li><a style='color: white' href=''><?php echo 'Bonjour  ' . get_name($_SESSION['email']); ?></a></li>
                                     <script> $('#register').hide();</script>
                                 <?php endif; ?>
 
@@ -120,7 +123,7 @@ include_once 'includes/init.php';
                                     <div style="padding-top: 1em" id="google_translate_element"></div>
                                     <script type="text/javascript">
                                         function googleTranslateElementInit() {
-                                            new google.translate.TranslateElement({pageLanguage: 'fr',includedLanguages: 'fr,ar,en,es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+                                            new google.translate.TranslateElement({pageLanguage: 'fr', includedLanguages: 'fr,ar,en,es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
                                             $("#google_translate_element img").eq(0).remove();
                                         }
 
@@ -140,7 +143,7 @@ include_once 'includes/init.php';
             </nav>
             <div>
                 <br>    <br>
-<?php include './caroussel/code.php' ?>
+                <?php include './caroussel/code.php' ?>
                 <br>    
 
                 <br>
@@ -150,7 +153,7 @@ include_once 'includes/init.php';
                 <div class='container-fluid'>
                     <div class='row'>
 
-<?php if (logged_in() && $_SESSION['email'] == 'admin@admin.com') : ?>
+                        <?php if (logged_in() && $_SESSION['email'] == 'admin@admin.com') : ?>
 
                             <div class='col-md-2 col-md-12'>
                                 <div id='get_cat'>
@@ -158,15 +161,13 @@ include_once 'includes/init.php';
                                     <div class='nav nav-pills nav-stacked'>
                                         <li class='active cat'><a href='#' ><span class='glyphicon glyphicon-cog'></span>Dashboard</a></li>
                                         <li><a href='#' class='category' cid='DRAME' onclick='FormulaireT();'>Thematique</a></li>
-                                        <li><a href='#' class='category' cid='COMEDIE'  onclick='FormulaireR();
-                                                listerParticipants();
-                                                infoUser();'>Réservation</a></li>
-                                        <li><a href='#'class='category' cid='SCIENCE FICTION' onclick='lister();'>lister participant</a></li>
+                                        <li><a href='#' class='category' cid='COMEDIE'  onclick='listerLesReservations();'>Les réservation</a></li>
+                                        <!--<li><a href='#'class='category' cid='SCIENCE FICTION' onclick='lister();'>lister participant</a></li>-->
                                         <li><a href='#'class='category' cid='HORREUR' onclick='FormulaireCircuit();'>Créer un circuit</a></li>
-                                        <li><a href='#'class='category' cid='HORREUR' onclick='obtenirFicheCircuit();'>Modifier un circuit</a></li>
-                                        <li><a href='#'class='category' cid='SUSPENSE' onclick='SupprimerCircuit();' >Supprimer Circuit</a></li>                                
+                                        <!--<li><a href='#'class='category' cid='HORREUR' onclick='obtenirFicheCircuit();'>Modifier un circuit</a></li>-->
+                                        <!--<li><a href='#'class='category' cid='SUSPENSE' onclick='SupprimerCircuit();' >Supprimer Circuit</a></li>-->                                
                                         <li><a href='#'class='category' cid='alo'onclick='listerCircuits();' >lister les Circuits</a></li>
-
+                                        <li><a href='#'class='category' cid='alo'onclick='formulairePromotion();' >Ajouter Promotion</a>
 
 
                                     </div>
@@ -176,17 +177,17 @@ include_once 'includes/init.php';
                             </div>							                         
 
 
-<?php endif; ?>
+                        <?php endif; ?>
 
 
 
-<?php if (logged_in() && $_SESSION['email'] == 'admin@admin.com') : ?>
+                        <?php if (logged_in() && $_SESSION['email'] == 'admin@admin.com') : ?>
                             <div class='col-md-10 col-md-12'>
 
 
-                                <?php else : ?>    
+                            <?php else : ?>    
                                 <div class='col-md-12 col-md-12'>
-<?php endif; ?>
+                                <?php endif; ?>
 
 
                                 <div class='row'>

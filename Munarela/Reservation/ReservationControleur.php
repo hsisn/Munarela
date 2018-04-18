@@ -83,6 +83,26 @@ function  circuitparid() {
     }
 }
 
+//lister toutes les réservations
+function  listerReservation() {
+    global $tabRes;
+      
+    $tabRes['action'] = "listerTouteReservation";
+    $requete = "SELECT * FROM reservation";
+    try {
+        $unModele = new circuitModel($requete, array());
+        $stmt = $unModele->executer();
+        $tabRes['lesReservation'] = array();
+        while ($ligne = $stmt->fetch(PDO::FETCH_OBJ)) {
+            $tabRes['lesReservation'][] = $ligne;
+        }
+        
+    } catch (Exception $e) {
+        echo $e;
+    } finally {
+        unset($unModele);
+    }
+}
 
 
 //******************************************************
@@ -105,6 +125,9 @@ switch ($action) {
         circuitparid();
         break;
     
+    case "listerReservation" :
+        listerReservation();
+        break;
     
     
 }
