@@ -147,6 +147,9 @@ function RamenerCircuit(rid) {
 
             $("#labtotal").html(reponse.circuitid[0].prix + " $");
             $("#amount").val(reponse.circuitid[0].prix);
+            
+            
+            /************************************Reyder**********************************/
             $("#montantpayervalue").text(reponse.circuitid[0].prix*0.3 + " $");
             $("input[name='montantpayer']").each(function(){
                 $(this).change(function(){                   
@@ -163,7 +166,7 @@ function RamenerCircuit(rid) {
                     $("#amount").val($("#amount").val()*0.3);
                 }
             });
-            
+              /************************************Reyder**********************************/
         },
         fail: function (err) {
         }

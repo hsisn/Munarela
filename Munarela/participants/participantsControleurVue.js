@@ -21,28 +21,6 @@ function listerP(listeParticpants) {
 
 }
 
-//function listerP(listeParticpants) {
-//    var taille = listeParticpants.length;
-//    ;
-//    var rep = "<div class='form-group row'>";
-//    rep += "                                <label for=\"listParticipant\" class=\"col-sm-2 col-form-label\">Liste Participants</label>";
-//    rep += "                                <div class=\"col-sm-10\" >";
-//    rep += "                                    <select class=\"form-control\" id=\"listParticipant\" name=\"listParticipant\" required>";
-//    rep += "                                        <option></option>";
-//    for (var i = 0; i < taille; i++) {
-//        rep += "<option value=" + listeParticpants[i].nom + ">" + listeParticpants[i].nom + "</option>";
-//    }
-//
-//    rep += "                                    </select>    ";
-//    rep += "                                </div>";
-//    rep += "                            </div>";
-//    rep += "<input type=\"button\" class=\"btn\" value=\"Modifier\" onClick=\" modifier();\" style=\"float: right; \"><br><br>";
-//    rep += "<input type=\"button\" class=\"btn\" value=\"Supprimer\" onClick=\" supprimer();\" style=\"float: right; \">";
-//
-//    $('#get_result').html(rep);
-//}
-
-
 
 function afficherFormParticipant(reponse) {
     var NbAdulte = reponse.adulte;

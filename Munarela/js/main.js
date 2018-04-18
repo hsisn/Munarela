@@ -12,6 +12,7 @@ var setListeThemes = function (reponse) {
 $(document).ready(function () {    
     listerTT();
     client=1;
+    count_item();
     listerCircuits();  
 
     $("body").on("click", "[id^=date]", function () {

@@ -407,8 +407,11 @@ function AffichageDetailsCircuit(Circuit) {
 
     for (var i = 0; i < taille; i++) {
         var hotel = Circuit[i].nomhotel;
+        var urlHotel = Circuit[i].urlHotel;
+        
+        
         if (jQuery.inArray(hotel.nomhotel, hotels) === -1) {
-            hotels.push(hotel);
+            hotels.push([hotel,urlHotel]);            
         }
     }
     var jour = showDays(Circuit[0].dateDeRetour, Circuit[0].dateDeDepart);
@@ -484,7 +487,7 @@ function AffichageDetailsCircuit(Circuit) {
     $("a[name='hotels']").click(function () {
         var detail = "";
         for (var i = 0; i < hotels.length; i++) {
-            detail += hotels[i] + "<br>";
+            detail += '<a href='+hotels[i][1] +'>' +hotels[i][0] + "</a><br>";
         }
         $("#contenuDetail").html(detail);
         $("#contenuDetail").css('color', 'cornflowerblue');
@@ -507,6 +510,7 @@ function AffichageDetailsCircuit(Circuit) {
         var detail = "";
         for (var i = 0; i < taille; i++) {
             if (Circuit[i].nomEtape === etape) {
+                detail += "Jour " + (i+1) + "<br>";
                 detail += Circuit[i].descriptionJour + "<br>";
             }
         }

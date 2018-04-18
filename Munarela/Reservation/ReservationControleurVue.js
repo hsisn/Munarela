@@ -59,11 +59,12 @@ function formulaireR() {
     result += "                        </div>";
 
     result += "     </div>";
+    result += "     </div>";
 
     //*************************************************
 
 
-    result += " <div class=\"container\" style=\" float: left; \">";
+    result += " <div class=\"container\" id='information' style=\" float: left; display : none;\">";
     result += "<hr class='ligne_horizontal'></hr>";
 
     result += "<h4>Informations sur les participants</h4>";
@@ -96,7 +97,7 @@ function formulaireR() {
 
     result += "                                </div>";
 
-    result += "            </div>";
+ 
 
 
 
@@ -115,7 +116,7 @@ function formulaireR() {
     result += "<input style='float:right;margin-right:80px;' type='image' name='submit'";
     result += "src='https://www.paypalobjects.com/webstatic/en_US/i/btn/png/blue-rect-paypalcheckout-60px.png' alt='PayPal '";
     result += "alt='PayPal - The safer, easier way to pay online'>";
-
+   result += "            </div>";
     //******************************************************
     result += "                <br>";
     result += "                <br>";
@@ -126,6 +127,9 @@ function formulaireR() {
 
 
     $('#get_result').html(result);
+    
+  
+    
 }
 
 
