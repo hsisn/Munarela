@@ -15,7 +15,7 @@ function AjouterCircuit() {
         //cache : false,
         contentType: false,
         processData: false,
-        success: function (reponse) {            
+        success: function (reponse) {
             CircuitVue(reponse);
             $("#nbEtape").html(nbEtape + 1);
             $("#nbJour").html(nbJour + 1);
@@ -49,7 +49,7 @@ function AfficherCircuits(idThem) {
 //fonction permettant d'afficher le detail des circuit une fois ces derniers sont lister par thémes
 //elle est utiliser par le client
 function AfficherDetailsCircuit(idCircuit) {
-
+    
     var formCircuit = new FormData(document.getElementById('contenuCircuit'));
     formCircuit.append('action', 'afficherDetailsCircuit');
     formCircuit.append('idCircuit', idCircuit);
@@ -60,7 +60,7 @@ function AfficherDetailsCircuit(idCircuit) {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function (reponse) {
+        success: function (reponse) {            
             CircuitVue(reponse);
         },
         fail: function (err) {}
@@ -70,7 +70,7 @@ function AfficherDetailsCircuit(idCircuit) {
 //Fonction qui liste les circuits pour l'admin
 function listerCircuits() {
     var formListerCircuit = new FormData();
-    formListerCircuit.append("action", "listerCircuit");    
+    formListerCircuit.append("action", "listerCircuit");
     if (client)
     {
         formListerCircuit.append("client", "oui");
@@ -86,7 +86,7 @@ function listerCircuits() {
             if (client) {
                 //code a faire pour afficher le drowdown
                 $.each(reponse.listecircuit, function (index, circuit) {
-                    $("#circuitDropdown").append('<li onclick="AfficherDetailsCircuit('+circuit.idCircuit+');return false;"><a>'+ circuit.titre + "</a></li>");
+                    $("#circuitDropdown").append('<li onclick="AfficherDetailsCircuit(' + circuit.idCircuit + ');return false;"><a>' + circuit.titre + "</a></li>");
                 });
 
                 client = null;
@@ -118,7 +118,7 @@ function supprimerCircuit(idCircuit) {
 }
 
 //fiche du circuit pour le modifier
-function obtenirFicheCircuit(idCircuit) {
+function obtenirFicheCircuit(idCircuit) {   
     var formCircuit = new FormData();
     formCircuit.append("action", "ficheCircuit");
     formCircuit.append("idCircuit", idCircuit);

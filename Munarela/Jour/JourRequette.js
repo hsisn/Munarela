@@ -48,6 +48,23 @@ function ajouterJour() {
 register();
    
 }
+function listerJour(idEtape) {
+    var formListerEtapes = new FormData();
+    formListerEtapes.append("action", "listerJours"); 
+    formListerEtapes.append("idEtape", idEtape);
+    $.ajax({
+        type: "POST",
+        url: "Jour/JourControleur.php",
+        data: formListerEtapes,
+        contentType: false,
+        processData: false,
+        dataType: "json", 
+        success: function (reponse) {     
+            setJours(reponse.listeJours);
+        },
+        fail: function (err) {}
+    });
+}
 
 function register(){
    

@@ -261,7 +261,7 @@ function lesCircuitListe(rep) {
                 list += '<td> <a href="#" onclick=\'supprimerCircuit(' + listcircuit[i].idCircuit + ');return false\' class="btn btn-primary a-btn-slide-text">';
                 list += ' <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>';
 
-                list += ' <a href="#" class="btn btn-primary a-btn-slide-text" onclick="obtenirFicheCircuit(' + listcircuit[i].idCircuit + ');return false">';
+                list += ' <a href="#" class="btn btn-primary a-btn-slide-text" onclick="obtenirFicheCircuit(' + listcircuit[i].idCircuit + ');listerEtapes(' + listcircuit[i].idCircuit + ');return false">';
                 list += '  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </a>';
                 list += '  <a href="#" class="btn btn-primary a-btn-slide-text" onclick="altPublication(' + listcircuit[i].idCircuit + ',' + listcircuit[i].published + ');return false">';
                 if (listcircuit[i].published === '1') {
@@ -271,9 +271,9 @@ function lesCircuitListe(rep) {
                 }
                 list += ' <span class="' + classe + '" aria-hidden="true"></span> </a> </td></tr>';
             }
-           
+
         }
-        list+='</tbody>  ';    
+        list += '</tbody>  ';
         list += "  </table>";
     }
     list += "</div>";
@@ -366,16 +366,14 @@ function afficherFicheCircuit(fiche, theme, promos) {
     input += '                                                        <textarea class="form-control" rows="5" id="descripCircuit" name="descripCircuit">' +
             fiche[0].description + "</textarea></div></div>";
     input += '                                                <div class="form-group row">';
-    input += '                                                    <label for="nbEtapeCircuit" class="col-sm-2 col-form-label">Entrer nombre etape</label>';
+    input += '                                                    <label for="nbEtapeCircuit" class="col-sm-2 col-form-label">Modifier une étape</label>';
     input += '                                                    <div class="col-sm-10" >';
-    input += '                                                        <select class="form-control" id="nbEtapeCircuit" name="nbEtapeCircuit" required>';
-    input += "                                                            <option>1</option>";
-    input += "                                                            <option>2</option>";
-    input += "                                                            <option>3</option>";
-    input += "                                                            <option>4</option>";
-    input += "                                                            <option>5</option>";
-    input += "                                                            <option>6</option>";
+    input += '                                                        <select class="form-control" id="EtapeDropDown" name="nbEtapeCircuit" required>';
+    for (var i = 0; i < listeEtapes.length; i++) {
+        input += "   <option value='" + listeEtapes[i].idEtape + "'>" + listeEtapes[i].nomEtape + "</option>";
+    }
     input += "                                                        </select>";
+    input += '                                                <input type="button" id="modifierEtape" class="btn" value="ModifierEtape" >';
     input += "                                                    </div>";
     input += "                                                </div>";
     input += '                                              <div class="form-group">';
@@ -389,8 +387,59 @@ function afficherFicheCircuit(fiche, theme, promos) {
     $("#get_result")
             .html(input)
             .append("<script></script>");
+
+
+    $("#modifierEtape").click(function () {
+        var etape = $("#EtapeDropDown").val();
+        ficheEtape(etape);
+    });
 }
 
+function ficheEtape(idEtape) {
+    var index = findWithAttr(listeEtapes, "idEtape", idEtape);
+    var input =
+    '   <form id="contenuEtape" class="form-group row" style="">  '  + 
+ '       <div class="form-group row">  '  + 
+ '           <h2 for="nomEtape" class="col-sm-2 col-form-label">Modification étape  '  + 
+ '               <span id="nbEtape"></span>  '  + 
+ '           </h2>  '  + 
+ '       </div>  '  + 
+ '       <div class="container" style="width: 60% ; float: left; margin-left: 20px">  '  + 
+ '           <div class="form-group row">  '  + 
+ '               <label for="nomEtape" class="col-sm-2 col-form-label">Nom de l\'étape</label>  '  + 
+ '               <div class="col-sm-10">  '  + 
+ '                   <input type="text" class="form-control" id="nomEtape" name="nomEtape" placeholder="Entrer nom du participant" required=""> </div>  '  + 
+ '           </div>  '  + 
+ '           <div class="form-group row">  '  + 
+ '               <label for="descripEtape" class="col-sm-2 col-form-label">Déscription étape</label>  '  + 
+ '           </div>  '  + 
+ '           <div class="form-group row">  '  + 
+ '               <label for="nbJourEtape" class="col-sm-2 col-form-label">Entrer nombre jour</label>  '  + 
+ '               <div class="col-sm-10">  '  + 
+ '                   <select class="form-control" id="nbJourEtape" name="nbJourEtape" required="">  '  + 
+ '                       <option value="1">1</option>  '  + 
+ '                       <option value="2">2</option>  '  + 
+ '                       <option value="3">3</option>  '  + 
+ '                       <option value="4">4</option>  '  + 
+ '                       <option value="5">5</option>  '  + 
+ '                       <option value="6">6</option>  '  + 
+ '                       <option value="7">7</option>  '  + 
+ '                       <option value="8">8</option>  '  + 
+ '                       <option value="9">9</option>  '  + 
+ '                       <option value="10">10</option>  '  + 
+ '                   </select>  '  + 
+ '               </div>  '  + 
+ '           </div>  '  + 
+ '           <input type="hidden" id="idCircuit">  '  + 
+ '           <br>  '  + 
+ '           <br>  '  + 
+ '           <input type="button" class="btn" value="Enregistrer étape" onclick="  $(&quot;#contenuEtape&quot;).hide(); $(&quot;#contenuJour&quot;).show(); AjouterEtape();">  '  + 
+ '           <br>  '  + 
+ '           <br> </div>  '  + 
+ '  </form>  ' ; 
+    $('#get_result').html("");
+    $("#get_result").html(input);
+}
 //variable pour le prix
 var prixReservation;
 //fonction qui affiche les details d'un circuit pour le client
@@ -424,10 +473,10 @@ function AffichageDetailsCircuit(Circuit) {
     for (var i = 0; i < taille; i++) {
         var hotel = Circuit[i].nomhotel;
         var urlHotel = Circuit[i].urlHotel;
-        
-        
+
+
         if (jQuery.inArray(hotel.nomhotel, hotels) === -1) {
-            hotels.push([hotel,urlHotel]);            
+            hotels.push([hotel, urlHotel]);
         }
     }
     var jour = showDays(Circuit[0].dateDeRetour, Circuit[0].dateDeDepart);
@@ -503,7 +552,7 @@ function AffichageDetailsCircuit(Circuit) {
     $("a[name='hotels']").click(function () {
         var detail = "";
         for (var i = 0; i < hotels.length; i++) {
-            detail += '<a href='+hotels[i][1] +'>' +hotels[i][0] + "</a><br>";
+            detail += '<a href=' + hotels[i][1] + '>' + hotels[i][0] + "</a><br>";
         }
         $("#contenuDetail").html(detail);
         $("#contenuDetail").css('color', 'cornflowerblue');
@@ -526,7 +575,7 @@ function AffichageDetailsCircuit(Circuit) {
         var detail = "";
         for (var i = 0; i < taille; i++) {
             if (Circuit[i].nomEtape === etape) {
-                detail += "Jour " + (i+1) + "<br>";
+                detail += "Jour " + (i + 1) + "<br>";
                 detail += Circuit[i].descriptionJour + "<br>";
             }
         }

@@ -3,9 +3,25 @@ var idCircuit;
 var total = 0;
 var client=null;
 var listeThemes=[];
+var listeEtapes=[];
+var listeJours=[];
 
+function findWithAttr(array, attr, value) {
+    for(var i = 0; i < array.length; i += 1) {
+        if(array[i][attr] === value) {
+            return i;
+        }
+    }
+    return -1;
+}
 var setListeThemes = function (reponse) {
     listeThemes = reponse;
+};
+var setEtapes = function (reponse) {
+    listeEtapes = reponse;
+};
+var setJours = function (reponse) {
+    listeJours = reponse;
 };
 
 

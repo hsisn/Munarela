@@ -46,12 +46,32 @@ function enregistrerJour() {
     }
 }
 
+function listerJours() {
 
+    global $tabRes;
+    $idEtape = $_POST['idEtape'];
+    $requete = "SELECT * FROM jour WHERE idEtape=?";
+    try {
+        $unModele = new circuitModel($requete, array( $idEtape));
+        $stmt = $unModele->executer();
+        $tabRes['listeJours'] = array();
+        while ($ligne = $stmt->fetch(PDO::FETCH_OBJ)) {
+            $tabRes['listeJours'][] = $ligne;
+        }
+    } catch (Exception $e) {
+        echo $e;
+    } finally {
+        unset($unModele);
+    }
+}
 //Controleur
 $action = $_POST['action'];
 switch ($action) {
     case "enregistrerJour" :
         enregistrerJour();
+        break;
+        case "listerJours" :
+        listerJours();
         break;
     
     

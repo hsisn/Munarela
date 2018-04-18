@@ -12,13 +12,13 @@ function enregistrerPromotion() {
     global $tabRes;
 
     $nomPromotion = $_POST['nomPromotion'];
-    $dateDebut = $_POST['datedebut'];
-    $dateFin = $_POST['datefin'];
+    $dateDebut = $_POST['dateDebut'];
+    $dateFin = $_POST['dateFin'];
     $taux = $_POST['taux'];
 
     try {
         $unModele = new circuitModel();
-        $requete = "INSERT INTO circuit VALUES(0,?,?,?,?)";
+        $requete = "INSERT INTO promotion VALUES(0,?,?,?,?)";
         $unModele = new circuitModel($requete, array($nomPromotion, $taux, $dateDebut, $dateFin));
         $stmt = $unModele->executer();
         $tabRes['action'] = "enregistrer";
