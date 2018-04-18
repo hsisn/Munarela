@@ -76,14 +76,14 @@ function formulaireR() {
 
     result += "                                <a href='#'class='btn btn-primary' cid='previsualiser'>Previsualiser la Reservation </a>";
     result += "                      </div>";
-    result += "  <div id='vuePart1' class=\"container fluid\" style=\"width: 40% ; float: left; \" >";
-
-
-    result += "                <br>";
-    result += "                <br>";
-
-    result += "                                <a href='#'class='btn btn-primary' cid='previsualiser' onClick='preview();'>Previsualiser la Reservation </a>";
-    result += "                      </div>";
+//    result += "  <div id='vuePart1' class=\"container fluid\" style=\"width: 40% ; float: left; \" >";
+//
+//
+//    result += "                <br>";
+//    result += "                <br>";
+//
+//    result += "                                <a href='#'class='btn btn-primary' cid='previsualiser' onClick='preview();'>Previsualiser la Reservation </a>";
+//    result += "                      </div>";
 
 
     result += "                        <div class=\"container fluid\" style=\"width: 40% ; float: left; margin-left: 60px\" >";
@@ -97,10 +97,10 @@ function formulaireR() {
     result += "                                </div>";
 
     result += "            </div>";
-   
 
 
-    
+
+
     result += "<input type='hidden' name='item_name_1' value='dqd'>";
     result += "<input type='hidden' name='item_number_1' value='1'>";
     result += "<input type='hidden' name='amount' id='amount'>";
@@ -123,9 +123,9 @@ function formulaireR() {
     result += "  </form>";
     result += " </div>";
 
-   
 
-    $('#get_result').html(result);    
+
+    $('#get_result').html(result);
 }
 
 
@@ -187,29 +187,43 @@ function listerP(listeParticpants) {
     $('#vuePart').html(rep);
 }
 
+function listerTouteReservation(reponse) {
 
-function previewForm(reponse){
-    
-    
+    var listReservation = reponse.lesReservation;
+    var taille = listReservation.length;
+    var classe = "";
+
+    var list = "";
+    list += '<div class="container">';
+    list += "  <h3>Liste des réservation</h3>";
+    list += '  <table class="table table-striped">';
+    list += "    <thead>";
+    list += "      <tr>";
+    list += "        <th>idCircuit</th><th>idUtilisateur</th><th>idRéservation</th><th>Nombre places</th>";
+    list += "      </tr>";
+    list += "    </thead>";
+    for (var i = 0; i < taille; i++) {
+        list += "    <tbody>";
+        list += "      <tr>";
+        list += "        <td>" + listReservation[i].idCircuit + "</td>";
+        list += "        <td>" + listReservation[i].idUtilisateur + "</td>";
+        list += "        <td>" + listReservation[i].idReservation + "</td>";
+        list += "        <td>" + listReservation[i].nbrPlaceDispo + "</td>";
+        
+
+    }
+    list += "  </tr></table></div>";
+    $("#get_result").html(list);
+
+
+
 }
-/*function afficherFiche(reponse){
- var uneFiche;
- if(reponse.OK){
- uneFiche=reponse.fiche;
- $('#formFicheF h3:first-child').html("Fiche du film numero "+uneFiche.idf);
- $('#idf').val(uneFiche.idf);
- $('#titreF').val(uneFiche.titre);
- $('#dureeF').val(uneFiche.duree);
- $('#resF').val(uneFiche.res);
- $('#divFormFiche').show();
- document.getElementById('divFormFiche').style.display='block';
- }else{
- $('#messages').html("Film "+$('#numF').val()+" introuvable");
- setTimeout(function(){ $('#messages').html(""); }, 5000);
- }
- 
- }
- */
+
+function previewForm(reponse) {
+
+
+}
+
 var reservationVue = function (reponse) {
     var action = reponse.action;
     switch (action) {
@@ -228,11 +242,17 @@ var reservationVue = function (reponse) {
             listerP(reponse.listetheme);
             break;
         case "formulaire" :
-            formulaireR();            
+            formulaireR();
             break;
-            case "previewForm" :
+        case "listerTouteReservation" :
+            //alert('je suis dans le switch');
+            listerTouteReservation(reponse);
+            break;
+
+        case "previewForm" :
             previewForm(reponse);
             break;
+
 
 
 

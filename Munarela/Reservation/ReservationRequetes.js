@@ -215,3 +215,27 @@ function preview() {
 
 
 }
+
+function listerLesReservations(){
+    var formReservartion = new FormData();
+    
+    formReservartion.append('action', 'listerReservation');//alert(formFilm.get("action"));
+
+    $.ajax({
+        type: 'POST',
+        url: 'Reservation/ReservationControleur.php',
+        data: formReservartion,
+        contentType: false,
+        processData: false,
+        dataType: 'json', //text pour le voir en format de string
+        success: function (reponse) {
+            //alert(reponse);
+            reservationVue(reponse);
+
+
+        },
+        fail: function (err) {
+        }
+    });
+    
+}

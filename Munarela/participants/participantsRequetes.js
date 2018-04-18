@@ -26,14 +26,14 @@ function enregistrer() {
         contentType: false,
         processData: false,
         success: function (reponse) {
-            alert("la reponse = "+reponse+" mon prix "+reponse.prixCircuit+" existe "+reponse.existe);
+           // alert("la reponse = "+reponse+" mon prix "+reponse.prixCircuit+" existe "+reponse.existe);
             if (reponse.existe) {
                 alert('vous avez déja réservé ce circuit');
                 listerTT();
                 return;
             }
             $('#labtotal').text(reponse.prixCircuit);
-            //filmsVue(reponse);
+            filmsVue(reponse);
         },
         fail: function (err) {
 
