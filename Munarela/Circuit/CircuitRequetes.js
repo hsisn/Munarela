@@ -72,7 +72,7 @@ function AfficherDetailsCircuit(idCircuit) {
 function listerCircuits() {
     var formListerCircuit = new FormData();
     formListerCircuit.append("action", "listerCircuit");
-    alert(JSON.stringify(listeThemes));
+    //alert(JSON.stringify(listeThemes));
     if (client)
     {
         formListerCircuit.append("client", "oui");

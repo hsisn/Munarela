@@ -74,16 +74,16 @@ function formulaireR() {
     result += "                <br>";
     result += "                <br>";
 
-    result += "                                <a href='#'class='btn btn-primary' cid='previsualiser'>Previsualiser la Reservation </a>";
-    result += "                      </div>";
-    result += "  <div id='vuePart1' class=\"container fluid\" style=\"width: 40% ; float: left; \" >";
-
-
-    result += "                <br>";
-    result += "                <br>";
-
-    result += "                                <a href='#'class='btn btn-primary' cid='previsualiser' onClick='preview();'>Previsualiser la Reservation </a>";
-    result += "                      </div>";
+//    result += "                                <a href='#'class='btn btn-primary' cid='previsualiser'>Previsualiser la Reservation </a>";
+//    result += "                      </div>";
+//    result += "  <div id='vuePart1' class=\"container fluid\" style=\"width: 40% ; float: left; \" >";
+//
+//
+//    result += "                <br>";
+//    result += "                <br>";
+//
+//    result += "                                <a href='#'class='btn btn-primary' cid='previsualiser' onClick='preview();'>Previsualiser la Reservation </a>";
+//    result += "                      </div>";
 
 
     result += "                        <div class=\"container fluid\" style=\"width: 40% ; float: left; margin-left: 60px\" >";
