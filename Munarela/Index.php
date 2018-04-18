@@ -162,9 +162,7 @@ include_once 'includes/init.php';
                                     <div class='nav nav-pills nav-stacked'>
                                         <li class='active cat'><a href='#' ><span class='glyphicon glyphicon-cog'></span>Dashboard</a></li>
                                         <li><a href='#' class='category' cid='DRAME' onclick='FormulaireT();'>Thematique</a></li>
-                                        <li><a href='#' class='category' cid='COMEDIE'  onclick='FormulaireR();
-                                                listerParticipants();
-                                                infoUser();'>Réservation</a></li>
+                                        <li><a href='#' class='category' cid='COMEDIE'  onclick='FormulaireR();listerParticipants();infoUser();'>Réservation</a></li>
                                         <li><a href='#'class='category' cid='SCIENCE FICTION' onclick='lister();'>lister participant</a></li>
                                         <li><a href='#'class='category' cid='HORREUR' onclick='FormulaireCircuit();'>Créer un circuit</a></li>
                                         <li><a href='#'class='category' cid='HORREUR' onclick='obtenirFicheCircuit();'>Modifier un circuit</a></li>
