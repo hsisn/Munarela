@@ -411,6 +411,228 @@ function enregistrerJour() {
         unset($unModele);
     }
 }
+//////////////////////////Panier//////////////////////////
+function enregistrerpanier()
+{
+
+    global $tabRes;
+    $p_id = $_SESSION["idCircuit"];
+    //$p_id=$_POST['idCircuit'];
+
+    try {
+
+        if (isset($_SESSION["email"])) {
+
+            $user_id = $_SESSION["email"];
+
+            $requete = "SELECT * FROM panier WHERE idCircuit =? AND email =?";
+            $unModele = new circuitModel($requete, array($p_id, $user_id));
+            $stmt = $unModele->executer();
+            $count = $stmt->rowCount();
+            if ($count > 0) {
+
+                $tabRes['msg'] = " circuit deja ajouter  Continue votre selection..! ";
+
+                $tabRes['action'] = "enregistrerPaniP";
+            } else {
+
+                $requete = "INSERT INTO panier VALUES (0,?,?)";
+                $unModele = new circuitModel($requete, array($p_id, $user_id));
+                $stmt = $unModele->executer();
+                $tabRes['msg'] = " circuit  Ajouter..! ";
+
+                $tabRes['action'] = "enregistrerPaniP";
+
+            }
+
+        }
+    } catch (Exception $e) {
+    } finally {
+        echo json_encode($tabRes);
+        unset($unModele);
+    }
+
+}
+
+function listerPanier()
+{
+    global $tabRes;
+    $tabRes['action'] = "listerPP";
+    ////////////////////////////
+
+    if (isset($_SESSION["email"])) {
+        try {
+            $email = $_SESSION["email"];
+            $requete = "SELECT a.idCircuit,a.imageCircuit,a.titre,a.prix,b.idPanier FROM circuit a,panier b WHERE a.idCircuit=b.idCircuit AND b.email='$email'";
+            $unModele = new circuitModel($requete, array());
+            $stmt = $unModele->executer();
+            $tabRes['listetheme'] = array();
+            while ($ligne = $stmt->fetch(PDO::FETCH_OBJ)) {
+                $tabRes['listetheme'][] = $ligne;
+            }
+        } catch (Exception $e) {
+            echo $e;
+        } finally {
+            echo json_encode($tabRes);
+            unset($unModele);
+        }
+
+    }
+
+}
+
+/////////////////////////
+//Count User panier item
+function compterP()
+{
+    global $tabRes;
+
+    //if (isset($_POST["count_item"])) {
+
+    try {
+        if (isset($_SESSION["email"])) {
+            $adr = $_SESSION["email"];
+        }
+
+        $requette = "SELECT * FROM panier WHERE email = ? and idCircuit is not null";
+        $unModele = new circuitModel($requette, array($adr));
+        $stmt = $unModele->executer();
+
+        $count = $stmt->rowCount();
+        $_SESSION["count"] = $count;
+        $tabRes['action'] = "compterPP";
+        $tabRes['compt'] = $count;
+    } catch (Exception $e) {
+        echo $e;
+    } finally {
+        echo json_encode($tabRes);
+        unset($unModele);
+    }
+
+}
+
+///////////////////////////
+function removePanier()
+{
+    global $tabRes;
+    $id = $_POST['idp'];
+
+    $tabRes['action'] = "removePP";
+    $requete = "Delete  FROM panier where idPanier=?";
+    try {
+        $unModele = new circuitModel($requete, array($id));
+        $stmt = $unModele->executer();
+        $tabRes['msg'] = "Panier supperimer ...";
+
+    } catch (Exception $e) {
+
+    } finally {
+        echo json_encode($tabRes);
+        unset($unModele);
+    }
+}
+
+////////////////////Reservation////////////////////////////////////
+function enregistrerR() {
+    global $tabRes;
+    $nom = $_POST['nom'];
+    $description = $_POST['description'];
+
+    try {
+        $unModele = new circuitModel();
+        $pochete = $unModele->verserFichier("pochettes", "pochette", "avatar.jpg", $nom);
+        $requete = "INSERT INTO thematique VALUES(0,?,?,?)";
+        $unModele = new circuitModel($requete, array($nom, $description, $pochete));
+        $stmt = $unModele->executer();
+        $tabRes['action'] = "enregistrerR";
+        $tabRes['msg'] = "thamatique bien enregistrer";
+    } catch (Exception $e) {
+        
+    } finally {
+        unset($unModele);
+    }
+}
+
+function lister() {
+    global $tabRes;
+    $tabRes['action'] = "listerR";
+    $requete = "SELECT * FROM thematique";
+    try {
+        $unModele = new circuitModel($requete, array());
+        $stmt = $unModele->executer();
+        $tabRes['listetheme'] = array();
+        while ($ligne = $stmt->fetch(PDO::FETCH_OBJ)) {
+            $tabRes['listetheme'][] = $ligne;
+        }
+    } catch (Exception $e) {
+        
+    } finally {
+        unset($unModele);
+    }
+}
+
+function previewForm() {
+    global $tabRes;
+    $tabRes['action'] = "previewR";
+    $requete = "SELECT * FROM thematique";
+    try {
+        $unModele = new circuitModel($requete, array());
+        $stmt = $unModele->executer();
+        $tabRes['listetheme'] = array();
+        while ($ligne = $stmt->fetch(PDO::FETCH_OBJ)) {
+            $tabRes['listetheme'][] = $ligne;
+        }
+    } catch (Exception $e) {
+        
+    } finally {
+        unset($unModele);
+    }
+}
+
+ 
+ 
+ //lister les circuit par id
+function  circuitparid() {
+    global $tabRes;
+    $id = $_POST['idc'];
+    
+    $tabRes['action'] = "ramenerR";
+    $requete = "SELECT * FROM circuit where idCircuit=?";
+    try {
+        $unModele = new circuitModel($requete, array($id));
+        $stmt = $unModele->executer();
+        $tabRes['circuitid'] = array();
+        while ($ligne = $stmt->fetch(PDO::FETCH_OBJ)) {
+            $tabRes['circuitid'][] = $ligne;
+        }
+        
+    } catch (Exception $e) {
+        
+    } finally {
+        unset($unModele);
+    }
+}
+
+//lister toutes les réservations
+function  listerReservation() {
+    global $tabRes;
+      
+    $tabRes['action'] = "listerTouteReservationR";
+    $requete = "SELECT * FROM reservation";
+    try {
+        $unModele = new circuitModel($requete, array());
+        $stmt = $unModele->executer();
+        $tabRes['lesReservation'] = array();
+        while ($ligne = $stmt->fetch(PDO::FETCH_OBJ)) {
+            $tabRes['lesReservation'][] = $ligne;
+        }
+        
+    } catch (Exception $e) {
+        echo $e;
+    } finally {
+        unset($unModele);
+    }
+}
 
 //******************************************************
 //Contr�leur
@@ -470,6 +692,46 @@ switch ($action) {
       case "enregistrerJourJ" :
         enregistrerJour();
         break;
+    
+    //////////////Panier///////////////////
+    case "enregistrerPaniP":
+        enregistrerpanier();
+        break;
+    case "compterPP":
+        compterP();
+        break;
+
+    case "removePP":
+        removePanier();
+        break;
+
+    case "listerPP":
+        listerPanier();
+        break;
+/////////////Reservation///////////////////////////
+     case "enregistrerR" :
+        enregistrerR();
+        break;
+    case "listerR" :
+        lister();
+        break;
+
+    case "listerParticipantR" :
+        listerParticipant();
+        break;
+   
+    
+    case "ramenerR" :
+        circuitparid();
+        break;
+    
+    case "listerReservationR" :
+        listerReservation();
+        break;
+   
+    
+    
+    
     
     }
         
