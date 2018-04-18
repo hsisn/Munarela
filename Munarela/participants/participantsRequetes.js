@@ -35,26 +35,26 @@ function enregistrer() {
             $('#labtotal').text(reponse.prixCircuit + " $");
             $('#montantpayervalue').text(reponse.prixCircuit + " $");
 
-            $('#information').show();
+            //$('#information').show();
 
 //histoire reyder*********************************************************************
-            $("#montantpayervalue").text(reponse.circuitid[0].prix * 0.3 + " $");
-            $("input[name='montantpayer']").each(function () {
-                $(this).change(function () {
-                    if ($("#montantpayerdepot").is(":checked")) {
-                        $("#montantpayervalue").text(($("#amount").val() * 0.3) + " $");
-                    } else {
-                        $("#montantpayervalue").text($("#amount").val() + " $");
-                    }
-                    ;
-                })
-            });
-
-            $("#formreservation").submit(function () {
-                if ($("#montantpayerdepot").is(":checked")) {
-                    $("#amount").val($("#amount").val() * 0.3);
-                }
-            });
+//            $("#montantpayervalue").text(reponse.circuitid[0].prix * 0.3 + " $");
+//            $("input[name='montantpayer']").each(function () {
+//                $(this).change(function () {
+//                    if ($("#montantpayerdepot").is(":checked")) {
+//                        $("#montantpayervalue").text(($("#amount").val() * 0.3) + " $");
+//                    } else {
+//                        $("#montantpayervalue").text($("#amount").val() + " $");
+//                    }
+//                    ;
+//                })
+//            });
+//
+//            $("#formreservation").submit(function () {
+//                if ($("#montantpayerdepot").is(":checked")) {
+//                    $("#amount").val($("#amount").val() * 0.3);
+//                }
+//            });
 //fin histoire reyder*********************************************************************
         },
         fail: function (err) {
